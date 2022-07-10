@@ -21,7 +21,7 @@ class HomeBottomCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+        padding: const EdgeInsets.only(left: 30, right: 30, bottom: 30),
         child: Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
