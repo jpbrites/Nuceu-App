@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuceu/widgets/home/home.dart';
+import 'package:nuceu/view/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
             SliderThemeData(overlayShape: SliderComponentShape.noOverlay),
       ),
       routes: {
-        '/': (context) => Home(),
+        '/': (context) => const HomeScreen(),
       },
     );
   }
