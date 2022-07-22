@@ -15,7 +15,7 @@ class Pesquisa extends StatelessWidget {
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(horizontal: 20),
             filled: true,
-            fillColor: Color.fromARGB(82, 195, 195, 195),
+            fillColor: Color.fromARGB(87, 195, 195, 195),
             hintText: 'Procurar',
             hintStyle: GoogleFonts.robotoFlex(
               fontSize: 12,
