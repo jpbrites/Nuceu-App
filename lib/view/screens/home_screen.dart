@@ -58,21 +58,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   CardHome(
                     textoCard: 'Plantão \nPsicológico',
-                    iconCard: Icons.local_cafe_outlined,
                     dataTextoCard: '12, Julho',
                     cardColor: Color(0xFF59968C),
                     smallCardColor: Color(0xFF167263),
                   ),
                   CardHome(
                     textoCard: 'Plantão \nPsicológico',
-                    iconCard: Icons.headset_outlined,
                     dataTextoCard: '12, Julho',
                     cardColor: Color(0xFFF99C66),
                     smallCardColor: Color(0xFFE46F40),
                   ),
                   CardHome(
                     textoCard: 'Plantão \nPsicológico',
-                    iconCard: Icons.local_cafe_outlined,
                     dataTextoCard: '12, Julho',
                     cardColor: Color(0xFF82BCD7),
                     smallCardColor: Color(0xFF348BAA),

@@ -6,13 +6,11 @@ import 'package:nuceu/themes/themes.dart';
 class CardHome extends StatelessWidget {
   final String textoCard;
   final String dataTextoCard;
-  final IconData iconCard;
   final Color cardColor;
   final Color smallCardColor;
 
   CardHome({
     required this.textoCard,
-    required this.iconCard,
     required this.dataTextoCard,
     required this.cardColor,
     required this.smallCardColor,
@@ -55,7 +53,7 @@ class CardHome extends StatelessWidget {
                   ),
                   child: Center(
                     child: Icon(
-                      iconCard,
+                      Icons.event_available_outlined,
                       color: Colors.white,
                       size: 30,
                     ),
