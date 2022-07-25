@@ -25,12 +25,16 @@ class CardHome extends StatelessWidget {
           //Essa função na verdade virá pela home
         },
         child: Container(
-          margin: EdgeInsets.only(bottom: 3),
-          width: MediaQuery.of(context).size.width * 0.47,
+          //constraints: BoxConstraints(
+          //  maxHeight: 216,
+          //),
+          height: 216,
+          margin: const EdgeInsets.only(bottom: 3),
+          width: 216,
           decoration: BoxDecoration(
             color: cardColor,
             borderRadius: BorderRadius.circular(15),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                   offset: Offset(0, 4),
                   spreadRadius: 0,
@@ -45,13 +49,13 @@ class CardHome extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.16,
-                  height: MediaQuery.of(context).size.width * 0.14,
+                  width: 61,
+                  height: 51,
                   decoration: BoxDecoration(
                     color: smallCardColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Icon(
                       Icons.event_available_outlined,
                       color: Colors.white,

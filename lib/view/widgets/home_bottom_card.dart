@@ -40,8 +40,8 @@ class HomeBottomCard extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(12),
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 0.16,
-                  height: MediaQuery.of(context).size.width * 0.14,
+                  width: 61,
+                  height: 51,
                   decoration: BoxDecoration(
                     color: colorIconCard,
                     borderRadius: BorderRadius.circular(10),
