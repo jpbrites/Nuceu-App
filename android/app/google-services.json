@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "882302187340",
+    "project_id": "univasf-nuceu-firebase",
+    "storage_bucket": "univasf-nuceu-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882302187340:android:1d79d3577052fadc9a01e9",
+        "android_client_info": {
+          "package_name": "com.example.nuceu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882302187340-vrml114eiblv8afbg90mb3645hdhmn0v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-6MXlDkcAdZTXwEOQl3HnSzeSaxCym_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882302187340-vrml114eiblv8afbg90mb3645hdhmn0v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
