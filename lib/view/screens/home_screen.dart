@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Pesquisa(),
+            const Pesquisa(),
             Padding(
               padding: Themes.paddingHome,
               child: Text(
