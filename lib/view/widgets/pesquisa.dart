@@ -13,13 +13,13 @@ class Pesquisa extends StatelessWidget {
         child: TextField(
           controller: TextEditingController(),
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 20),
             filled: true,
-            fillColor: Color.fromARGB(80, 195, 195, 195),
+            fillColor: const Color.fromARGB(80, 195, 195, 195),
             hintText: 'Procurar',
             hintStyle: GoogleFonts.robotoFlex(
               fontSize: 12,
-              color: Color(0xFF535353),
+              color: const Color(0xFF535353),
             ),
             suffixIcon: const Padding(
               padding: EdgeInsets.only(right: 20),
