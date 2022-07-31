@@ -1,5 +1,3 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:nuceu/themes/themes.dart';
 
@@ -38,7 +36,7 @@ class HomeBottomCard extends StatelessWidget {
           child: Row(
             children: [
               Padding(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Container(
                   width: 61,
                   height: 51,
