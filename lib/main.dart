@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nuceu/view/screens/home_screen.dart';
+import 'package:nuceu/view/screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,13 +21,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Nuceu - APP',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         sliderTheme:
             SliderThemeData(overlayShape: SliderComponentShape.noOverlay),
       ),
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => const LoginScreen(),
+        '/home-screen': (context) => const HomeScreen(),
       },
     );
   }

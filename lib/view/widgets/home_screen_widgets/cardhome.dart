@@ -65,13 +65,13 @@ class CardHome extends StatelessWidget {
                 ),
                 Text(
                   textoCard,
-                  style: Themes.latoBoldWhite,
+                  style: Themes.latoBold(20).copyWith(color: Colors.white),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: Text(
                     dataTextoCard,
-                    style: Themes.latoBoldWhite,
+                    style: Themes.latoBold(20).copyWith(color: Colors.white),
                   ),
                 ),
               ],

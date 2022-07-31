@@ -27,7 +27,7 @@ class HomeBottomCard extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: colorCard,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                   offset: Offset(0, 4),
                   spreadRadius: 0,
@@ -57,7 +57,7 @@ class HomeBottomCard extends StatelessWidget {
               ),
               Text(
                 title,
-                style: Themes.latoBoldWhite,
+                style: Themes.latoBold(20).copyWith(color: Colors.white),
               )
             ],
           ),

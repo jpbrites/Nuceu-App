@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
-import 'package:nuceu/view/widgets/cardhome.dart';
-import 'package:nuceu/view/widgets/pesquisa.dart';
+import 'package:nuceu/view/widgets/home_screen_widgets/cardhome.dart';
+import 'package:nuceu/view/widgets/home_screen_widgets/pesquisa.dart';
 import 'package:nuceu/themes/themes.dart';
-import 'package:nuceu/view/widgets/home_bottom_card.dart';
+import 'package:nuceu/view/widgets/home_screen_widgets/home_bottom_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,11 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     'Olá,',
-                    style: Themes.homeTitlBold,
+                    style: Themes.latoRegular(19),
                   ),
                   Text(
                     'Como você está se sentindo hoje?',
-                    style: Themes.homeTitle,
+                    style: Themes.latoLight(19),
                   ),
                 ],
               ),
@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: Themes.paddingHome,
               child: Text(
                 'EVENTOS',
-                style: Themes.latoBold,
+                style: Themes.latoExtraBold(20),
               ),
             ),
             Container(
@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: Themes.paddingHome,
               child: Text(
                 'HOME',
-                style: Themes.latoBold,
+                style: Themes.latoExtraBold(20),
               ),
             ),
             HomeBottomCard(

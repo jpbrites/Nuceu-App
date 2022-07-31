@@ -3,28 +3,38 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
 class Themes {
-  static TextStyle homeTitlBold = GoogleFonts.lato(
-    fontSize: 19,
-    fontWeight: FontWeight.w500,
-    color: Colors.black,
-  );
-  static TextStyle homeTitle = GoogleFonts.lato(
-    fontSize: 19,
-    fontWeight: FontWeight.w300,
-    wordSpacing: 1.5,
-    color: Colors.black,
-  );
+  static TextStyle latoRegular(double fontsize) {
+    return GoogleFonts.lato(
+      fontSize: fontsize,
+      fontWeight: FontWeight.w500,
+      wordSpacing: 1.5,
+      color: Colors.black,
+    );
+  }
 
-  static TextStyle latoBold = GoogleFonts.lato(
-    fontWeight: FontWeight.w900,
-    fontSize: 20,
-  );
+  static TextStyle latoLight(double fontsize) {
+    return GoogleFonts.lato(
+      fontSize: fontsize,
+      fontWeight: FontWeight.w300,
+      wordSpacing: 1.5,
+      color: Colors.black,
+    );
+  }
 
-  static TextStyle latoBoldWhite = GoogleFonts.lato(
-    fontWeight: FontWeight.w800,
-    fontSize: 20,
-    color: Colors.white,
-  );
+  static TextStyle latoExtraBold(double fontsize) {
+    return GoogleFonts.lato(
+      fontWeight: FontWeight.w900,
+      fontSize: fontsize,
+    );
+  }
+
+  static TextStyle latoBold(double fontsize) {
+    return GoogleFonts.lato(
+      fontWeight: FontWeight.w800,
+      fontSize: fontsize,
+    );
+  }
+
   static EdgeInsets paddingHome =
-      EdgeInsets.symmetric(horizontal: 30, vertical: 20);
+      const EdgeInsets.symmetric(horizontal: 30, vertical: 20);
 }
