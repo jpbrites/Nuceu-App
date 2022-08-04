@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nuceu/themes/themes.dart';
+import 'package:nuceu/view/screens/forgot_password_screen.dart';
 import 'package:nuceu/view/screens/home_screen.dart';
 import 'package:nuceu/view/widgets/Login_screen_widgets/login_colored_button.dart';
 import 'package:nuceu/view/widgets/Login_screen_widgets/login_textfield.dart';
@@ -87,16 +88,22 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.only(top: 14),
               child: SizedBox(
                 width: double.infinity,
-                child: Text(
-                  'Esqueceu a Senha?',
-                  textAlign: TextAlign.end,
-                  style: Themes.latoRegular(14).copyWith(
-                    shadows: const [
-                      Shadow(color: Color(0xFF348BAA), offset: Offset(0, -4))
-                    ],
-                    decorationColor: const Color(0xFF348BAA),
-                    decoration: TextDecoration.underline,
-                    color: Colors.transparent,
+                child: GestureDetector( //Detectar toque no esqueceu a senha sem quebrar a formatação
+                  onTap: () {
+                    Navigator.push(context, 
+                      MaterialPageRoute(builder: (context) => ForgotPassScreen(),));
+                  },
+                  child: Text(
+                    'Esqueceu a Senha?',
+                    textAlign: TextAlign.end,
+                    style: Themes.latoRegular(14).copyWith(
+                      shadows: const [
+                        Shadow(color: Color(0xFF348BAA), offset: Offset(0, -4))
+                      ],
+                      decorationColor: const Color(0xFF348BAA),
+                      decoration: TextDecoration.underline,
+                      color: Colors.transparent,
+                    ),
                   ),
                 ),
               ),
@@ -148,11 +155,14 @@ class _LoginScreenState extends State<LoginScreen> {
       print(e);
       Navigator.pop(context); // tirar animação circular
       FocusManager.instance.primaryFocus?.unfocus(); // Tirar teclado pra não atrapalhar a mensagem de erro
-      ScaffoldMessenger.of(context).showSnackBar(const 
+      ScaffoldMessenger.of(context).showSnackBar( 
       SnackBar(
-        content: Text("Falha ao realizar login. Verifique se seu email e senha estão corretos"),
+        content: Text(
+          'Falha ao realizar login. Verifique se seu email e senha estão corretos',
+          style: Themes.latoRegular(20),
+          ),
         backgroundColor: Colors.pinkAccent,
-        duration: Duration(seconds: 5),
+        duration: const Duration(seconds: 5),
         ));
     }
   }
