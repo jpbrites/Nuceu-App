@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nuceu/themes/themes.dart';
+import 'package:nuceu/view/screens/home_screen.dart';
 import 'package:nuceu/view/widgets/Login_screen_widgets/login_colored_button.dart';
 import 'package:nuceu/view/widgets/Login_screen_widgets/login_textfield.dart';
 
@@ -103,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 28,
             ),
             LoginColoredButon(
-              onTap: () {},
+              onTap: () {signIn();},
               color: const Color(0xFF348BAA),
               label: 'Entrar',
               textColor: Colors.white,
@@ -126,5 +128,32 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future signIn() async {
+    showDialog(
+      context: context,
+      barrierDismissible: false, 
+      builder: (context)=> const Center(child: CircularProgressIndicator()));
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(), 
+        password: passwordController.text.trim()
+      ).then((value) {
+        Navigator.pop(context); // tira animação circular
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
+      });
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      Navigator.pop(context); // tirar animação circular
+      FocusManager.instance.primaryFocus?.unfocus(); // Tirar teclado pra não atrapalhar a mensagem de erro
+      ScaffoldMessenger.of(context).showSnackBar(const 
+      SnackBar(
+        content: Text("Falha ao realizar login. Verifique se seu email e senha estão corretos"),
+        backgroundColor: Colors.pinkAccent,
+        duration: Duration(seconds: 5),
+        ));
+    }
   }
 }
