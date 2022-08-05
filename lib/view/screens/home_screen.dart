@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/cardhome.dart';
+import 'package:nuceu/view/screens/quem_somos.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/pesquisa.dart';
 import 'package:nuceu/themes/themes.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/home_bottom_card.dart';
@@ -84,12 +85,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: Themes.latoExtraBold(20),
               ),
             ),
-            HomeBottomCard(
+            GestureDetector(
+            child: HomeBottomCard(
               colorCard: const Color(0xFF82BCD7),
               colorIconCard: const Color(0xFF348BAA),
               title: 'Conheça-nos',
               icon: Elusive.heart_empty,
             ),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => quem_somos()));
+            },
+            ),
+            
             HomeBottomCard(
               colorCard: const Color(0xFF82D78A),
               colorIconCard: const Color(0xFF34AA55),
