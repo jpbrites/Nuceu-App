@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nuceu/view/screens/home_screen.dart';
 import 'package:nuceu/view/screens/login_screen.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -28,8 +29,8 @@ class MyApp extends StatelessWidget {
             SliderThemeData(overlayShape: SliderComponentShape.noOverlay),
       ),
       routes: {
-        '/': (context) => const LoginScreen(),
-        '/home-screen': (context) => const HomeScreen(),
+        '/': (context) => const HomeScreen(),
+        //'/home-screen': (context) => const HomeScreen(),
       },
     );
   }
