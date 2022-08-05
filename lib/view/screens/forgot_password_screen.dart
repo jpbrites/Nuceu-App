@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nuceu/themes/themes.dart';
@@ -59,8 +60,12 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
               keyboardType: TextInputType.emailAddress,
               textController: emailController,
               obscureText: false,
-              validator: (_) {
-                return null;
+              validator: (email) {
+                if(email != null && !EmailValidator.validate(email)){
+                  return 'Insira um email válido';
+                } else {
+                  return null;
+                }
               },
             ),
             const SizedBox(
