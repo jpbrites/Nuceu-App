@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nuceu/view/screens/home_screen.dart';
 import 'package:nuceu/view/screens/login_screen.dart';
-
+import 'package:nuceu/view/screens/quem_somos.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +30,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const HomeScreen(),
+        '/login-screen': (context) => const LoginScreen(),
+        '/quem-somos': (context) => const QuemSomos(),
         //'/home-screen': (context) => const HomeScreen(),
       },
     );

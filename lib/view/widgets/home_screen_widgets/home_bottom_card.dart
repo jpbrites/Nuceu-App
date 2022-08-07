@@ -8,16 +8,18 @@ class HomeBottomCard extends StatelessWidget {
     required this.colorIconCard,
     required this.title,
     required this.icon,
+    required this.ontap,
   }) : super(key: key);
   final Color colorCard;
   final Color colorIconCard;
   final String title;
   final IconData icon;
+  final Function()? ontap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: ontap,
       child: Padding(
         padding: const EdgeInsets.only(left: 30, right: 30, bottom: 30),
         child: Container(

@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Pesquisa(),
+            const Pesquisa(),
             Padding(
               padding: Themes.paddingHome,
               child: Text(
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: Themes.latoExtraBold(20),
               ),
             ),
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
               child: ListView(
                 shrinkWrap: true,
@@ -85,29 +85,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: Themes.latoExtraBold(20),
               ),
             ),
-            GestureDetector(
-            child: HomeBottomCard(
+            HomeBottomCard(
               colorCard: const Color(0xFF82BCD7),
               colorIconCard: const Color(0xFF348BAA),
               title: 'Conheça-nos',
               icon: Elusive.heart_empty,
+              ontap: () {
+                Navigator.of(context).pushNamed('/quem-somos');
+              },
             ),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => quem_somos()));
-            },
-            ),
-            
             HomeBottomCard(
               colorCard: const Color(0xFF82D78A),
               colorIconCard: const Color(0xFF34AA55),
               title: 'Vídeos informativos',
               icon: Icons.play_circle_outline_outlined,
+              ontap: () {},
             ),
             HomeBottomCard(
               colorCard: Colors.amber,
               colorIconCard: const Color.fromARGB(255, 145, 110, 7),
               title: 'Teste',
               icon: Icons.cable_sharp,
+              ontap: () {},
             ),
           ],
         ),
