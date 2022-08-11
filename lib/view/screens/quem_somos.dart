@@ -116,10 +116,54 @@ class _QuemSomosState extends State<QuemSomos> {
                     ]
                     ),
             ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 0, right: 0, top: 50, bottom: 0),
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding:
+                      const EdgeInsets.only(left: 140, right: 0, top: 20, bottom: 0),
+                    child:
+                      CircleAvatar(
+                        backgroundColor: const Color(0xFF636161),
+                        radius: 8,
+          ), //CircleAvatar
+                  ),
+                  Padding(
+                    padding:
+                      const EdgeInsets.only(left: 8, right: 0, top: 20, bottom: 0),
+                    child:
+                      CircleAvatar(
+                        backgroundColor: const Color(0xFFD9D9D9),
+                        radius: 8,
+          ), //CircleAvatar
+                  ),
+                  Padding(
+                    padding:
+                      const EdgeInsets.only(left: 8, right: 0, top: 20, bottom: 0),
+                    child:
+                      CircleAvatar(
+                        backgroundColor: Color(0xFFD9D9D9),
+                        radius: 8,
+          ), //CircleAvatar
+                  ),
+                  Padding(
+                    padding:
+                      const EdgeInsets.only(left: 8, right: 0, top: 20, bottom: 0),
+                    child:
+                      CircleAvatar(
+                        backgroundColor: Color(0xFFD9D9D9),
+                        radius: 8,
+          ), //CircleAvatar
+                  ),
                     ]
                     ),
                 
               ),
+          ]
+    )
+    ),
     );
              
  
