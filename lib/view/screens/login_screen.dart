@@ -6,6 +6,7 @@ import 'package:nuceu/view/screens/forgot_password_screen.dart';
 import 'package:nuceu/view/screens/home_screen.dart';
 import 'package:nuceu/view/widgets/Login_screen_widgets/login_colored_button.dart';
 import 'package:nuceu/view/widgets/Login_screen_widgets/login_textfield.dart';
+import 'package:nuceu/view/widgets/navigation_drawer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -21,30 +22,20 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
+      drawer: const NavigationDrawer(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black, size: 30),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 20,
-            ),
-            IconButton(
-              iconSize: 32,
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
-              splashRadius: 20,
-              onPressed: () {},
-              icon: const Icon(
-                Icons.menu,
-                color: Colors.black,
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
             Text(
               'Entrar',
               style: Themes.latoRegular(48),
@@ -64,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               textController: emailController,
               obscureText: false,
               validator: (email) {
-                if(email != null && !EmailValidator.validate(email)){
+                if (email != null && !EmailValidator.validate(email)) {
                   return 'Insira um email válido';
                 } else {
                   return null;
@@ -93,10 +84,14 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.only(top: 14),
               child: SizedBox(
                 width: double.infinity,
-                child: GestureDetector( //Detectar toque no esqueceu a senha sem quebrar a formatação
+                child: GestureDetector(
+                  //Detectar toque no esqueceu a senha sem quebrar a formatação
                   onTap: () {
-                    Navigator.push(context, 
-                      MaterialPageRoute(builder: (context) => ForgotPassScreen(),));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ForgotPassScreen(),
+                        ));
                   },
                   child: Text(
                     'Esqueceu a Senha?',
@@ -117,7 +112,9 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 28,
             ),
             LoginColoredButon(
-              onTap: () {signIn();},
+              onTap: () {
+                signIn();
+              },
               color: const Color(0xFF348BAA),
               label: 'Entrar',
               textColor: Colors.white,
@@ -144,31 +141,36 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future signIn() async {
     showDialog(
-      context: context,
-      barrierDismissible: false, 
-      builder: (context)=> const Center(child: CircularProgressIndicator()));
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()));
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(), 
-        password: passwordController.text.trim()
-      ).then((value) {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: emailController.text.trim(),
+              password: passwordController.text.trim())
+          .then((value) {
         Navigator.pop(context); // tira animação circular
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            ));
       });
     } on FirebaseAuthException catch (e) {
       print(e);
       Navigator.pop(context); // tirar animação circular
-      FocusManager.instance.primaryFocus?.unfocus(); // Tirar teclado pra não atrapalhar a mensagem de erro
-      ScaffoldMessenger.of(context).showSnackBar( 
-      SnackBar(
+      FocusManager.instance.primaryFocus
+          ?.unfocus(); // Tirar teclado pra não atrapalhar a mensagem de erro
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
           'Falha ao realizar login. Verifique se seu email e senha estão corretos',
           style: Themes.latoRegular(20),
-          ),
+        ),
         backgroundColor: Colors.pinkAccent,
         duration: const Duration(seconds: 5),
-        ));
+      ));
     }
   }
 }

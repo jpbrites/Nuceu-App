@@ -99,7 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
               colorIconCard: const Color(0xFF34AA55),
               title: 'Vídeos informativos',
               icon: Icons.play_circle_outline_outlined,
-              ontap: () {},
+              ontap: () {
+                Navigator.of(context).pushNamed('/videos-screen');
+              },
             ),
             HomeBottomCard(
               colorCard: Colors.amber,
