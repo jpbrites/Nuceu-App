@@ -21,6 +21,7 @@ class _VideosScreenState extends State<VideosScreen> {
   void initState() {
     super.initState();
     _initChannel();
+    APIService.instance.resetPageToken();
   }
 
   _initChannel() async {
