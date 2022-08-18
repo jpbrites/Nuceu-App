@@ -8,16 +8,25 @@ class CardHome extends StatelessWidget {
   final String dataTextoCard;
   final Color cardColor;
   final Color smallCardColor;
+  final bool thereAreEvents;
 
   CardHome({
     required this.textoCard,
     required this.dataTextoCard,
     required this.cardColor,
     required this.smallCardColor,
+    required this.thereAreEvents
   });
 
   @override
   Widget build(BuildContext context) {
+    IconData whatIcon;
+    if(thereAreEvents == true || thereAreEvents == null){
+      whatIcon = Icons.event_available_outlined;
+    } else {
+      whatIcon = Icons.do_not_disturb_on;
+    }
+
     return Padding(
       padding: const EdgeInsets.only(left: 30),
       child: GestureDetector(
@@ -55,9 +64,9 @@ class CardHome extends StatelessWidget {
                     color: smallCardColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Icon(
-                      Icons.event_available_outlined,
+                      whatIcon,
                       color: Colors.white,
                       size: 30,
                     ),

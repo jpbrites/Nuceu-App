@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/cardhome.dart';
@@ -5,6 +6,7 @@ import 'package:nuceu/view/screens/quem_somos.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/pesquisa.dart';
 import 'package:nuceu/themes/themes.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/home_bottom_card.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   double slideValue = 5;
+  final Timestamp now = Timestamp.fromDate(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +56,52 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  CardHome(
+              child: FutureBuilder<QuerySnapshot>(
+                    future: FirebaseFirestore.instance.collection('eentos').where('data', isGreaterThanOrEqualTo: now).get(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+                      //Animação enquanto estiver carregando
+                      if(snapshot.connectionState == ConnectionState.waiting){
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          alignment: Alignment.center,
+                          child: const CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+                          ),
+                        );
+                      }
+                      //Erro ao carregar ou não tem nenhum evento próximo
+                      if(snapshot.data!.docs.isEmpty || snapshot.hasError){ 
+                        return CardHome(
+                              textoCard: 'Aguardando\nNovos Eventos',
+                              dataTextoCard: '',
+                              cardColor: const Color(0xFF535353),
+                              smallCardColor: const Color(0xFF757575),
+                              thereAreEvents: false,
+                            );
+                          
+                      }
+                      return ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        children: snapshot.data!.docs.map((DocumentSnapshot document){
+                          Map<String,dynamic> data = document.data()! as Map <String, dynamic>;
+                          DateTime eventDate = data['data'].toDate();
+                          eventDate = eventDate.subtract(const Duration(hours: 3));
+                          final String eventDateFormated = DateFormat('kk:mm - dd-MM-yyyy').format(eventDate);
+
+                          return CardHome(
+                            textoCard: data['titulo'].toString(), 
+                            dataTextoCard: eventDateFormated, 
+                            cardColor: Color(0xFF59968C), 
+                            smallCardColor: Color(0xFF167263),
+                            thereAreEvents: true,
+                          );
+                        }).toList(),
+                      );
+                    },
+                  ),
+
+                  /* CardHome(
                     textoCard: 'Plantão \nPsicológico',
                     dataTextoCard: '12, Julho',
                     cardColor: const Color(0xFF59968C),
@@ -74,9 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     dataTextoCard: '12, Julho',
                     cardColor: const Color(0xFF82BCD7),
                     smallCardColor: const Color(0xFF348BAA),
-                  ),
-                ],
-              ),
+                  ), */
             ),
             Padding(
               padding: Themes.paddingHome,
