@@ -14,8 +14,8 @@ class AddNovoEvento extends StatelessWidget {
         barrierDismissible: false,
         builder: (BuildContext context) => AlertDialog(
           title: Text(
-            textAlign: TextAlign.center,
             'Informações do evento',
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Lato-Regular',
               fontSize: 16.0,
@@ -24,8 +24,8 @@ class AddNovoEvento extends StatelessWidget {
           content: Column(
             children: <Widget>[
               Text(
-                  textAlign: TextAlign.left,
                   'Informe o Titulo do Evento',
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     fontFamily: 'Lato-Regular',
                     fontSize: 16.0,
@@ -42,8 +42,8 @@ class AddNovoEvento extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                  textAlign: TextAlign.left,
                   'Breve Descrição do Evento',
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     fontFamily: 'Lato-Regular',
                     fontSize: 16.0,
@@ -60,8 +60,8 @@ class AddNovoEvento extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                  textAlign: TextAlign.left,
                   'Insira uma Imagem',
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     fontFamily: 'Lato-Regular',
                     fontSize: 16.0,
