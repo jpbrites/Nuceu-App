@@ -1,10 +1,10 @@
 # nuceu
 
-A new Flutter project.
+Projeto Flutter para um aplicativo de estilo informativo ao Núcleo de Cuidado ao Estudande Universitário (NUCEU) da Univasf
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Aqui você encontra todos os arquivos básicos associados ao aplicativo. Front-end em flutter e Back-end sendo feito utilizando-se do Firebase Firestore.
 
 A few resources to get you started if this is your first Flutter project:
 
