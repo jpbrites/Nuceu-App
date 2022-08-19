@@ -48,13 +48,18 @@ class AddNovoEvento extends StatelessWidget {
                     fontFamily: 'Lato-Regular',
                     fontSize: 16.0,
                   )),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Descrição',
+              SizedBox(
+                height: 100,
+                child: TextField(
+                  //obscureText: true,
+                  maxLines: null,
+                  expands: true,
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Descrição',
+                  ),
                 ),
-                style: TextStyle(height: 4.0),
               ),
               SizedBox(
                 height: 10,

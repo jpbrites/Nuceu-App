@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:nuceu/view/screens/detalhesDoEvento.dart';
 import 'package:nuceu/view/screens/home_screen.dart';
 import 'package:nuceu/view/screens/login_screen.dart';
 import 'package:nuceu/view/screens/quem_somos.dart';
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
         '/login-screen': (context) => const LoginScreen(),
         '/quem-somos': (context) => const QuemSomos(),
         '/videos-screen': (context) => VideosScreen(),
-        //'/home-screen': (context) => const HomeScreen(),
+        '/edit-post-screen': (context) => EditPostScreen(),
+        //'/' : (context) => EditPostScreen(),
+        '/home-screen': (context) => const HomeScreen(),
       },
     );
   }
