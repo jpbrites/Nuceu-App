@@ -6,16 +6,20 @@ import 'package:nuceu/themes/themes.dart';
 class CardHome extends StatelessWidget {
   final String textoCard;
   final String dataTextoCard;
+  final String id;
   final Color cardColor;
   final Color smallCardColor;
   final bool thereAreEvents;
+  final Function()? ontap;
 
   CardHome(
       {required this.textoCard,
       required this.dataTextoCard,
       required this.cardColor,
       required this.smallCardColor,
-      required this.thereAreEvents});
+      required this.thereAreEvents,
+      required this.ontap,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +33,7 @@ class CardHome extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 30),
       child: GestureDetector(
-        onTap: () {
-          //Essa função na verdade virá pela home
-        },
+        onTap: ontap,
         child: Container(
           //constraints: BoxConstraints(
           //  maxHeight: 216,

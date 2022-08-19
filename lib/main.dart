@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/videos-screen': (context) => VideosScreen(),
         '/edit-post-screen': (context) => EditPostScreen(),
         //'/' : (context) => EditPostScreen(),
-        '/home-screen': (context) => const HomeScreen(),
+        //'/home-screen': (context) => const HomeScreen(),
       },
     );
   }

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
+import 'package:nuceu/utils/dialogs/admin_event_dialog.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/cardhome.dart';
 import 'package:nuceu/view/screens/quem_somos.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/pesquisa.dart';
@@ -18,10 +20,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   double slideValue = 5;
   final Timestamp now = Timestamp.fromDate(DateTime.now());
-  var bCardColor, sCardColor; int colorControl = 0;
+  final bool isLogged =
+      FirebaseAuth.instance.currentUser == null ? false : true;
+  var bCardColor, sCardColor;
+  int colorControl = 0;
 
-  colorSelector(){
-    switch(colorControl){
+  colorSelector() {
+    switch (colorControl) {
       case 0:
         bCardColor = 0xFF59968C;
         sCardColor = 0xFF167263;
@@ -35,11 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
       case 2:
         bCardColor = 0xFF82BCD7;
         sCardColor = 0xFF348BAA;
-        colorControl=0;
+        colorControl = 0;
         break;
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Row(
                       children: [
                         CardHome(
+                          id: '',
+                          ontap: () {},
                           textoCard: 'Aguardando\nNovos Eventos',
                           dataTextoCard: '',
                           cardColor: const Color(0xFF535353),
@@ -122,6 +128,28 @@ class _HomeScreenState extends State<HomeScreen> {
                           DateFormat('kk:mm - dd-MM-yyyy').format(eventDate);
                       colorSelector();
                       return CardHome(
+                        id: document.id,
+                        ontap: () {
+                          if (isLogged) {
+                            editEventDialoig(
+                                context: context,
+                                onView: () {
+                                  //mesma função que vai aparecer no else
+                                },
+                                onDelete: () {
+                                  setState(() {
+                                    FirebaseFirestore.instance
+                                        .collection('eventos')
+                                        .doc(document.id)
+                                        .delete();
+                                  });
+                                  Navigator.pop(context);
+                                },
+                                onEdit: () {});
+                          } else {
+                            //Push pra página do evento
+                          }
+                        },
                         textoCard: data['titulo'].toString(),
                         dataTextoCard: eventDateFormated,
                         cardColor: Color(bCardColor),
