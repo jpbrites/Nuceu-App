@@ -19,7 +19,10 @@ class _QuemSomosState extends State<QuemSomos> {
       FirebaseAuth.instance.currentUser == null ? false : true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    return PageView(
+      children: [
+      Scaffold(
       drawer: const NavigationDrawer(),
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -164,6 +167,85 @@ class _QuemSomosState extends State<QuemSomos> {
           ),
         ]),
       ),
+    ),
+    Scaffold(
+      drawer: const NavigationDrawer(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black, size: 30),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: Text(
+          'Onde estamos?',
+          style: Themes.latoLight(20),
+        ),
+      ),
+      body: Container(
+        color: const Color.fromARGB(255, 255, 255, 255),
+        margin: const EdgeInsets.symmetric(
+          vertical: 20.0,
+          horizontal: 0.0,
+        ),
+        padding: const EdgeInsets.all(10.0),
+        child: Column(children: [
+            Padding(
+            padding: EdgeInsets.only(left: 7, right: 20, top: 0, bottom: 0),
+            child: Image.asset(
+              'imagens/onde_estamos.png',
+              width: 223.0,
+              height: 221.0,
+              
+            ),
+          ),
+          Padding( 
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              style: Themes.latoLight(20),
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+            child: Row(children: <Widget>[
+              Padding(
+            padding: EdgeInsets.only(left: 10, right: 0, top: 10, bottom: 0),
+            child: Text(
+              "Encontre-nos: ",
+              style: Themes.latoRegular(24),
+            ),
+          ),
+              Padding(
+                padding: EdgeInsets.only(left: 0, right: 0, top: 13, bottom: 0),
+                child: IconButton(
+                  icon: Icon(FontAwesomeIcons.mapLocationDot
+                  ),
+                  onPressed: () {
+                    launchExternalWebsite('https://goo.gl/maps/QgKb8rHiKJUsLi4eA');
+                  },
+                  ),
+                
+              ),
+            ]
+            ),
+          ),
+          Padding( 
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              style: Themes.latoLight(20),
+            ),
+          ),
+
+
+
+
+      ]
+    ),
+    ),
+    ),
+      ]
     );
   }
 
