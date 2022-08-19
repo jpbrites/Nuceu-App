@@ -18,6 +18,28 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   double slideValue = 5;
   final Timestamp now = Timestamp.fromDate(DateTime.now());
+  var bCardColor, sCardColor; int colorControl = 0;
+
+  colorSelector(){
+    switch(colorControl){
+      case 0:
+        bCardColor = 0xFF59968C;
+        sCardColor = 0xFF167263;
+        colorControl++;
+        break;
+      case 1:
+        bCardColor = 0xFFF99C66;
+        sCardColor = 0xFFE46F40;
+        colorControl++;
+        break;
+      case 2:
+        bCardColor = 0xFF82BCD7;
+        sCardColor = 0xFF348BAA;
+        colorControl=0;
+        break;
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: MediaQuery.of(context).size.height * 0.35,
               child: FutureBuilder<QuerySnapshot>(
                 future: FirebaseFirestore.instance
-                    .collection('eentos')
+                    .collection('eventos')
                     .where('data', isGreaterThanOrEqualTo: now)
                     .get(),
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -98,12 +120,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       eventDate = eventDate.subtract(const Duration(hours: 3));
                       final String eventDateFormated =
                           DateFormat('kk:mm - dd-MM-yyyy').format(eventDate);
-
+                      colorSelector();
                       return CardHome(
                         textoCard: data['titulo'].toString(),
                         dataTextoCard: eventDateFormated,
-                        cardColor: Color(0xFF59968C),
-                        smallCardColor: Color(0xFF167263),
+                        cardColor: Color(bCardColor),
+                        smallCardColor: Color(sCardColor),
                         thereAreEvents: true,
                       );
                     }).toList(),
