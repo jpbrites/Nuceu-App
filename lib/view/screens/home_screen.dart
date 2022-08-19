@@ -57,51 +57,61 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
               child: FutureBuilder<QuerySnapshot>(
-                    future: FirebaseFirestore.instance.collection('eentos').where('data', isGreaterThanOrEqualTo: now).get(),
-                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
-                      //Animação enquanto estiver carregando
-                      if(snapshot.connectionState == ConnectionState.waiting){
-                        return Container(
-                          width: MediaQuery.of(context).size.width,
-                          alignment: Alignment.center,
-                          child: const CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.greenAccent),
-                          ),
-                        );
-                      }
-                      //Erro ao carregar ou não tem nenhum evento próximo
-                      if(snapshot.data!.docs.isEmpty || snapshot.hasError){ 
-                        return CardHome(
-                              textoCard: 'Aguardando\nNovos Eventos',
-                              dataTextoCard: '',
-                              cardColor: const Color(0xFF535353),
-                              smallCardColor: const Color(0xFF757575),
-                              thereAreEvents: false,
-                            );
-                          
-                      }
-                      return ListView(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        children: snapshot.data!.docs.map((DocumentSnapshot document){
-                          Map<String,dynamic> data = document.data()! as Map <String, dynamic>;
-                          DateTime eventDate = data['data'].toDate();
-                          eventDate = eventDate.subtract(const Duration(hours: 3));
-                          final String eventDateFormated = DateFormat('kk:mm - dd-MM-yyyy').format(eventDate);
+                future: FirebaseFirestore.instance
+                    .collection('eentos')
+                    .where('data', isGreaterThanOrEqualTo: now)
+                    .get(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  //Animação enquanto estiver carregando
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      child: const CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.greenAccent),
+                      ),
+                    );
+                  }
+                  //Erro ao carregar ou não tem nenhum evento próximo
+                  if (snapshot.data!.docs.isEmpty || snapshot.hasError) {
+                    return Row(
+                      children: [
+                        CardHome(
+                          textoCard: 'Aguardando\nNovos Eventos',
+                          dataTextoCard: '',
+                          cardColor: const Color(0xFF535353),
+                          smallCardColor: const Color(0xFF757575),
+                          thereAreEvents: false,
+                        ),
+                      ],
+                    );
+                  }
+                  return ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data()! as Map<String, dynamic>;
+                      DateTime eventDate = data['data'].toDate();
+                      eventDate = eventDate.subtract(const Duration(hours: 3));
+                      final String eventDateFormated =
+                          DateFormat('kk:mm - dd-MM-yyyy').format(eventDate);
 
-                          return CardHome(
-                            textoCard: data['titulo'].toString(), 
-                            dataTextoCard: eventDateFormated, 
-                            cardColor: Color(0xFF59968C), 
-                            smallCardColor: Color(0xFF167263),
-                            thereAreEvents: true,
-                          );
-                        }).toList(),
+                      return CardHome(
+                        textoCard: data['titulo'].toString(),
+                        dataTextoCard: eventDateFormated,
+                        cardColor: Color(0xFF59968C),
+                        smallCardColor: Color(0xFF167263),
+                        thereAreEvents: true,
                       );
-                    },
-                  ),
+                    }).toList(),
+                  );
+                },
+              ),
 
-                  /* CardHome(
+              /* CardHome(
                     textoCard: 'Plantão \nPsicológico',
                     dataTextoCard: '12, Julho',
                     cardColor: const Color(0xFF59968C),

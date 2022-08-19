@@ -10,18 +10,17 @@ class CardHome extends StatelessWidget {
   final Color smallCardColor;
   final bool thereAreEvents;
 
-  CardHome({
-    required this.textoCard,
-    required this.dataTextoCard,
-    required this.cardColor,
-    required this.smallCardColor,
-    required this.thereAreEvents
-  });
+  CardHome(
+      {required this.textoCard,
+      required this.dataTextoCard,
+      required this.cardColor,
+      required this.smallCardColor,
+      required this.thereAreEvents});
 
   @override
   Widget build(BuildContext context) {
     IconData whatIcon;
-    if(thereAreEvents == true || thereAreEvents == null){
+    if (thereAreEvents == true || thereAreEvents == null) {
       whatIcon = Icons.event_available_outlined;
     } else {
       whatIcon = Icons.do_not_disturb_on;
