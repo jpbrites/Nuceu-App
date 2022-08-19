@@ -45,7 +45,7 @@ class _QuemSomosState extends State<QuemSomos> {
               height: 150.0,
             ),
           ),
-          Padding(
+          Padding( //falta centralizar
             padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
             child: Text(
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
