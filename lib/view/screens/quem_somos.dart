@@ -38,7 +38,15 @@ class _QuemSomosState extends State<QuemSomos> {
         padding: const EdgeInsets.all(10.0),
         child: Column(children: [
           Padding(
-            padding: EdgeInsets.only(left: 20, right: 20, top: 190, bottom: 20),
+            padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 20),
+            child: Image.asset(
+              'imagens/quem_somos.png',
+              width: 150.0,
+              height: 150.0,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
             child: Text(
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
               style: Themes.latoLight(20),
@@ -86,7 +94,7 @@ class _QuemSomosState extends State<QuemSomos> {
                   ontap: () {
                     launchExternalWebsite('https://www.instagram.com/nuceu_univasf/');
                   },
-                ),
+                ), 
               )
             ]),
           ),
