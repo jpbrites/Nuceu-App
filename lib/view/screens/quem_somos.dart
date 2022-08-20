@@ -165,7 +165,43 @@ class _QuemSomosState extends State<QuemSomos> {
               ],
             ),
           ),
-        ]),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 38, bottom: 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 150, right: 0, top: 0, bottom: 0),
+                  child: CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Color(0xFF636161),
+                  )
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
+                  child: CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Color(0xFFD9D9D9),
+                  )
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 0, right: 150, top: 0, bottom: 0),
+                  child: CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Color(0xFFD9D9D9),
+                  )
+                )
+
+
+              ]
+            )
+          )
+        ]
+        ),
       ),
     ),
     Scaffold(
@@ -237,7 +273,43 @@ class _QuemSomosState extends State<QuemSomos> {
               style: Themes.latoLight(20),
             ),
           ),
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 0, right: 0, top: 38, bottom: 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 150, right: 0, top: 0, bottom: 0),
+                  child: CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Color(0xFFD9D9D9),
+                  )
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
+                  child: CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Color(0xFF636161),
+                  )
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.only(left: 0, right: 150, top: 0, bottom: 0),
+                  child: CircleAvatar(
+                    radius: 7,
+                    backgroundColor: Color(0xFFD9D9D9),
+                  )
+                )
 
+
+
+
+              ]
+            )
+          )
 
 
 

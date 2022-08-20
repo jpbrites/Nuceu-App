@@ -4,6 +4,7 @@ import 'package:nuceu/view/screens/detalhesDoEvento.dart';
 import 'package:nuceu/view/screens/home_screen.dart';
 import 'package:nuceu/view/screens/login_screen.dart';
 import 'package:nuceu/view/screens/quem_somos.dart';
+import 'package:nuceu/view/screens/tela_inicial.dart';
 import 'package:nuceu/view/screens/videos_screen.dart';
 
 void main() async {
@@ -31,11 +32,12 @@ class MyApp extends StatelessWidget {
             SliderThemeData(overlayShape: SliderComponentShape.noOverlay),
       ),
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) =>  TelaInicial(),
         '/login-screen': (context) => const LoginScreen(),
         '/quem-somos': (context) => const QuemSomos(),
         '/videos-screen': (context) => VideosScreen(),
         '/edit-post-screen': (context) => EditPostScreen(),
+
         //'/' : (context) => EditPostScreen(),
         //'/home-screen': (context) => const HomeScreen(),
       },
