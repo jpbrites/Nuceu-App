@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:nuceu/themes/themes.dart';
@@ -56,7 +58,7 @@ class _CreateAccountState extends State<CreateAccount> {
             ),
               LoginColoredButon(
               onTap: () {
-                
+                registerUser();
               },
               color: const Color(0xFF348BAA),
               label: 'Criar conta',
@@ -66,5 +68,32 @@ class _CreateAccountState extends State<CreateAccount> {
           ],),
         ),
         );
+  }
+
+  Future registerUser() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(child: CircularProgressIndicator()));
+    try {
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text,
+        password: '654321',
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      Navigator.pop(context); // tirar animação circular
+      FocusManager.instance.primaryFocus
+          ?.unfocus(); // Tirar teclado pra não atrapalhar a mensagem de erro
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Falha ao criar a conta.',
+          style: Themes.latoRegular(20),
+        ),
+        backgroundColor: Colors.pinkAccent,
+        duration: const Duration(seconds: 5),
+      ));
+    }
+    Navigator.pop(context); 
   }
 }
