@@ -145,7 +145,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   });
                                   Navigator.pop(context);
                                 },
-                                onEdit: () {});
+                                onEdit: () {
+                                  
+                                });
                           } else {
                             //Push pra página do evento
                           }
@@ -160,25 +162,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-
-              /* CardHome(
-                    textoCard: 'Plantão \nPsicológico',
-                    dataTextoCard: '12, Julho',
-                    cardColor: const Color(0xFF59968C),
-                    smallCardColor: const Color(0xFF167263),
-                  ),
-                  CardHome(
-                    textoCard: 'Plantão \nPsicológico',
-                    dataTextoCard: '12, Julho',
-                    cardColor: const Color(0xFFF99C66),
-                    smallCardColor: const Color(0xFFE46F40),
-                  ),
-                  CardHome(
-                    textoCard: 'Plantão \nPsicológico',
-                    dataTextoCard: '12, Julho',
-                    cardColor: const Color(0xFF82BCD7),
-                    smallCardColor: const Color(0xFF348BAA),
-                  ), */
             ),
             Padding(
               padding: Themes.paddingHome,
