@@ -25,24 +25,26 @@ class _QuemSomosState extends State<QuemSomos> {
       Scaffold(
       drawer: const NavigationDrawer(),
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black, size: 30),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Quem somos?',
-          style: Themes.latoLight(20),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(40),
+        child: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black, size: 30),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            'Quem somos?',
+            style: Themes.latoRegular(20).copyWith(color: Colors.black),
+          ),
         ),
       ),
       body: Container(
         color: const Color.fromARGB(255, 255, 255, 255),
-        margin: const EdgeInsets.symmetric(
-          vertical: 20.0,
-          horizontal: 0.0,
+        margin: const EdgeInsets.only(
+          bottom: 22,
         ),
         padding: const EdgeInsets.all(10.0),
-        child: Column(children: [
+        child: ListView(children: [
           Stack(
             children: [
               SizedBox(
@@ -70,10 +72,11 @@ class _QuemSomosState extends State<QuemSomos> {
               Padding(
                 //falta centralizar
                 padding:
-                    EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+                    EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
                 child: Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                   style: Themes.latoLight(20),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               if (isLogged)
@@ -85,31 +88,28 @@ class _QuemSomosState extends State<QuemSomos> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(left: 20, right: 155, top: 10, bottom: 0),
+            padding: EdgeInsets.only(left: 0, right: 0, top: 10, bottom: 0),
             child: Text(
               "Entre em contato!",
               style: Themes.latoBold(24),
+              textAlign: TextAlign.center,
             ),
           ),
           Padding(
             padding:
-                const EdgeInsets.only(left: 0, right: 20, top: 0, bottom: 0),
+                const EdgeInsets.only(left: 0, right: 0, top: 20, bottom: 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Stack(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 30, right: 10, top: 20, bottom: 0),
-                      child: IconBottomCard(
-                        colorCard: const Color(0xFF92E3A9),
-                        icon: Icons.whatsapp,
-                        ontap: () {
-                          launchExternalWebsite(
-                              'https://wa.me/5587991592631?text=Falae+pc+lind%C3%A3o');
-                        },
-                      ),
+                    IconBottomCard(
+                      colorCard: const Color(0xFF92E3A9),
+                      icon: Icons.whatsapp,
+                      ontap: () {
+                        launchExternalWebsite(
+                            'https://wa.me/5587991592631?text=Falae+pc+lind%C3%A3o');
+                      },
                     ),
                     if (isLogged)
                       AddButton(
@@ -121,16 +121,12 @@ class _QuemSomosState extends State<QuemSomos> {
                 ),
                 Stack(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 10, top: 20, bottom: 0),
-                      child: IconBottomCard(
-                        colorCard: const Color(0xFFF99C66),
-                        icon: Icons.phone,
-                        ontap: () {
-                          launchNuceuPhone();
-                        },
-                      ),
+                    IconBottomCard(
+                      colorCard: const Color(0xFFF99C66),
+                      icon: Icons.phone,
+                      ontap: () {
+                        launchNuceuPhone();
+                      },
                     ),
                     if (isLogged)
                       AddButton(
@@ -142,17 +138,13 @@ class _QuemSomosState extends State<QuemSomos> {
                 ),
                 Stack(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 10, top: 20, bottom: 0),
-                      child: IconBottomCard(
-                        colorCard: const Color(0xFF82BCD7),
-                        icon: FontAwesomeIcons.instagram,
-                        ontap: () {
-                          launchExternalWebsite(
-                              'https://www.instagram.com/nuceu_univasf/');
-                        },
-                      ),
+                    IconBottomCard(
+                      colorCard: const Color(0xFF82BCD7),
+                      icon: FontAwesomeIcons.instagram,
+                      ontap: () {
+                        launchExternalWebsite(
+                            'https://www.instagram.com/nuceu_univasf/');
+                      },
                     ),
                     if (isLogged)
                       AddButton(
@@ -165,157 +157,140 @@ class _QuemSomosState extends State<QuemSomos> {
               ],
             ),
           ),
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 0, right: 0, top: 38, bottom: 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Padding(
-                  padding:
-                  const EdgeInsets.only(left: 150, right: 0, top: 0, bottom: 0),
-                  child: CircleAvatar(
-                    radius: 7,
-                    backgroundColor: Color(0xFF636161),
-                  )
-                ),
-                Padding(
-                  padding:
-                  const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
-                  child: CircleAvatar(
-                    radius: 7,
-                    backgroundColor: Color(0xFFD9D9D9),
-                  )
-                ),
-                Padding(
-                  padding:
-                  const EdgeInsets.only(left: 0, right: 150, top: 0, bottom: 0),
-                  child: CircleAvatar(
-                    radius: 7,
-                    backgroundColor: Color(0xFFD9D9D9),
-                  )
-                )
-
-
-              ]
-            )
-          )
         ]
         ),
       ),
+      extendBody: true,
+      bottomNavigationBar: Padding(
+        padding:
+            const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+            CircleAvatar(
+              radius: 7,
+              backgroundColor: Color(0xFF636161),
+            ),
+            Padding(padding: EdgeInsets.only(left: 15)),
+            CircleAvatar(
+              radius: 7,
+              backgroundColor: Color(0xFFD9D9D9),
+            ),
+            Padding(padding: EdgeInsets.only(right: 15)),
+            CircleAvatar(
+              radius: 7,
+              backgroundColor: Color(0xFFD9D9D9),
+            ),
+          ]
+            )
+          ),
     ),
+    
+    //A OUTRA PÁGINAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     Scaffold(
       drawer: const NavigationDrawer(),
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black, size: 30),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Onde estamos?',
-          style: Themes.latoLight(20),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(40),
+        child: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black, size: 30),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            'Onde estamos?',
+            style: Themes.latoRegular(20).copyWith(color: Colors.black),
+          ),
         ),
       ),
       body: Container(
         color: const Color.fromARGB(255, 255, 255, 255),
-        margin: const EdgeInsets.symmetric(
-          vertical: 20.0,
-          horizontal: 0.0,
+        margin: const EdgeInsets.only(
+          bottom: 22,
         ),
         padding: const EdgeInsets.all(10.0),
-        child: Column(children: [
-            Padding(
-            padding: EdgeInsets.only(left: 7, right: 20, top: 0, bottom: 0),
-            child: Image.asset(
-              'imagens/onde_estamos.png',
-              width: 223.0,
-              height: 221.0,
-              
-            ),
-          ),
-          Padding( 
-            padding: EdgeInsets.all(10.0),
-            child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-              style: Themes.latoLight(20),
-            ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
-            child: Row(children: <Widget>[
+        child: ListView(
+          children: [
+            Column(children: [
               Padding(
-            padding: EdgeInsets.only(left: 10, right: 0, top: 10, bottom: 0),
-            child: Text(
-              "Encontre-nos: ",
-              style: Themes.latoRegular(24),
-            ),
-          ),
-              Padding(
-                padding: EdgeInsets.only(left: 0, right: 0, top: 13, bottom: 0),
-                child: IconButton(
-                  icon: Icon(FontAwesomeIcons.mapLocationDot
-                  ),
-                  onPressed: () {
-                    launchExternalWebsite('https://goo.gl/maps/QgKb8rHiKJUsLi4eA');
-                  },
-                  ),
+              padding: EdgeInsets.only(left: 7, right: 20, top: 0, bottom: 0),
+              child: Image.asset(
+                'imagens/onde_estamos.png',
+                width: 223.0,
+                height: 221.0,
                 
               ),
-            ]
             ),
-          ),
-          Padding( 
-            padding: EdgeInsets.all(10.0),
-            child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-              style: Themes.latoLight(20),
+            Padding( 
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                style: Themes.latoLight(20),
+                textAlign: TextAlign.justify,
+              ),
             ),
-          ),
-          Padding(
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+              child: Row(children: <Widget>[
+                Padding(
+              padding: EdgeInsets.only(left: 10, right: 0, top: 10, bottom: 0),
+              child: Text(
+                "Encontre-nos: ",
+                style: Themes.latoRegular(24),
+              ),
+            ),
+                Padding(
+                  padding: EdgeInsets.only(left: 0, right: 0, top: 13, bottom: 0),
+                  child: IconButton(
+                    icon: Icon(FontAwesomeIcons.mapLocationDot
+                    ),
+                    onPressed: () {
+                      launchExternalWebsite('https://goo.gl/maps/QgKb8rHiKJUsLi4eA');
+                    },
+                    ),
+                  
+                ),
+              ]
+              ),
+            ),
+            Padding( 
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                "Lorem ipsum dolor sit amet, consectelit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut lablit, sed do eiusmod tempor incididunt ut labtur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                style: Themes.latoLight(20),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+              ]
+            ),
+          ],
+        ),
+    ),
+    extendBody: true,
+    bottomNavigationBar: Padding(
             padding:
-                const EdgeInsets.only(left: 0, right: 0, top: 38, bottom: 0),
+                const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Padding(
-                  padding:
-                  const EdgeInsets.only(left: 150, right: 0, top: 0, bottom: 0),
-                  child: CircleAvatar(
-                    radius: 7,
-                    backgroundColor: Color(0xFFD9D9D9),
-                  )
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                CircleAvatar(
+                  radius: 7,
+                  backgroundColor: Color(0xFFD9D9D9),
                 ),
-                Padding(
-                  padding:
-                  const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
-                  child: CircleAvatar(
-                    radius: 7,
-                    backgroundColor: Color(0xFF636161),
-                  )
+                Padding(padding: EdgeInsets.only(left: 15)),
+                CircleAvatar(
+                  radius: 7,
+                  backgroundColor: Color(0xFF636161),
                 ),
-                Padding(
-                  padding:
-                  const EdgeInsets.only(left: 0, right: 150, top: 0, bottom: 0),
-                  child: CircleAvatar(
-                    radius: 7,
-                    backgroundColor: Color(0xFFD9D9D9),
-                  )
+                Padding(padding: EdgeInsets.only(right: 15)),
+                CircleAvatar(
+                  radius: 7,
+                  backgroundColor: Color(0xFFD9D9D9),
                 )
-
-
-
-
               ]
             )
-          )
-
-
-
-      ]
-    ),
-    ),
+          ),
     ),
       ]
     );
