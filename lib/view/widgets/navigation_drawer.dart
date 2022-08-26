@@ -31,7 +31,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     'Tela inicial',
                     style: Themes.latoLight(17),
                   ),
-                  onTap: () => Navigator.of(context).pushNamed('/'),
+                  onTap: () => Navigator.of(context).pushNamed('/home-screen'),
                 ),
               ),
               ListTile(

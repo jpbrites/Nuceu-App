@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:nuceu/themes/themes.dart';
 import 'package:nuceu/view/widgets/navigation_drawer.dart';
 import 'package:nuceu/view/widgets/quem_somos_widgets/add_button.dart';
@@ -236,24 +237,44 @@ class _QuemSomosState extends State<QuemSomos> {
                 Padding(
               padding: EdgeInsets.only(left: 10, right: 0, top: 10, bottom: 0),
               child: Text(
-                "Encontre-nos: ",
+                "Visite nosso endereço: ",
                 style: Themes.latoRegular(24),
               ),
             ),
-                Padding(
-                  padding: EdgeInsets.only(left: 0, right: 0, top: 13, bottom: 0),
-                  child: IconButton(
-                    icon: Icon(FontAwesomeIcons.mapLocationDot
+
+                GestureDetector(
+                  child:
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 30, right: 10, top: 20, bottom: 0),
+                      child: Container(
+                         width: 55,
+                        height: 55,
+                        decoration: BoxDecoration(
+                        color: const Color(0xFF92E3A9),
+                        borderRadius: BorderRadius.circular(10),
+                     
+                        ),
+                      child: Center(
+                        child: Icon(
+                          FontAwesome5.map_marker_alt,
+                          color: Color(0xFF263238),
+                          size: 24,
+                          
                     ),
-                    onPressed: () {
-                      launchExternalWebsite('https://goo.gl/maps/QgKb8rHiKJUsLi4eA');
-                    },
-                    ),
+                  ),
                   
                 ),
+
+              ),
+              onTap: () {
+                launchExternalWebsite('https://goo.gl/maps/QgKb8rHiKJUsLi4eA');
+              },
+              ),
               ]
               ),
             ),
+
             Padding( 
               padding: EdgeInsets.all(10.0),
               child: Text(
@@ -262,9 +283,10 @@ class _QuemSomosState extends State<QuemSomos> {
                 textAlign: TextAlign.justify,
               ),
             ),
-              ]
+            ]
             ),
-          ],
+          ]
+          
         ),
     ),
     extendBody: true,
@@ -293,6 +315,7 @@ class _QuemSomosState extends State<QuemSomos> {
           ),
     ),
       ]
+
     );
   }
 

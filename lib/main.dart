@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) =>  TelaInicial(),
+        '/home-screen': (context) => const HomeScreen(),
         '/login-screen': (context) => const LoginScreen(),
         '/quem-somos': (context) => const QuemSomos(),
         '/videos-screen': (context) => VideosScreen(),
