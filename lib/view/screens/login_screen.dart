@@ -31,24 +31,19 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
+        title: Text('Tela de Login', style: Themes.latoRegular(24),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset('imagens/login.png', height: 250,),
               ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20, left: 20),
-              child: Text(
-                'Login',
-                style: Themes.latoRegular(24),
-              ),
             ),
             LoginTextField(
               keyboardType: TextInputType.emailAddress,

@@ -79,9 +79,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     style: Themes.latoLight(17),
                   ),
                   onTap: () {
-                    FirebaseAuth.instance
-                        .signOut()
-                        .then((value) => {Navigator.pushNamed(context, '/create-account-screen')});
+                    Navigator.pushNamed(context, '/create-account-screen');
                   },
               ),
               if (isLogged)

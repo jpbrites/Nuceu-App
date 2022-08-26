@@ -16,7 +16,7 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
-  final emailController = TextEditingController();
+  final EmailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +29,27 @@ class _CreateAccountState extends State<CreateAccount> {
           centerTitle: true,
           iconTheme: const IconThemeData(color: Colors.black, size: 30),
             backgroundColor: Colors.white,
-            title: const Text(
-              'Crie um usuário',
-              style: TextStyle(fontFamily: 'Lato-Light', color: Colors.black),
-            )),
+            title: Text(
+              'Cadastrar',
+              style: Themes.latoRegular(24),),
+            ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 70,
+              ),
+               Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('imagens/register.png', height: 300,),
+              ],
+            ),
             LoginTextField(
               keyboardType: TextInputType.emailAddress,
-              textController: emailController,
+              textController: EmailController,
               obscureText: false,
               validator: (email) {
                 if (email != null && !EmailValidator.validate(email)) {
@@ -60,7 +68,7 @@ class _CreateAccountState extends State<CreateAccount> {
               onTap: () {
                 registerUser();
               },
-              color: const Color(0xFF348BAA),
+              color: const Color(0xFF109636),
               label: 'Criar conta',
               textColor: Colors.white,
               google: false,
@@ -77,7 +85,7 @@ class _CreateAccountState extends State<CreateAccount> {
         builder: (context) => const Center(child: CircularProgressIndicator()));
     try {
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
+        email: EmailController.text,
         password: '654321',
       );
     } on FirebaseAuthException catch (e) {

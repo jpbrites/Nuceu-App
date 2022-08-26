@@ -44,17 +44,20 @@ class _LoginTextFieldState extends State<LoginTextField> {
             filled: true,
             fillColor: Colors.white,
             
-            border: UnderlineInputBorder(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(
                 color: Color.fromARGB(127, 0, 0, 0),
               ),
             ),
-            enabledBorder: UnderlineInputBorder(
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(
                 color: Color.fromARGB(127, 0, 0, 0),
               ),
             ),
-            focusedBorder: UnderlineInputBorder(
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(
                 color: Color.fromARGB(127, 0, 0, 0),
               ),
