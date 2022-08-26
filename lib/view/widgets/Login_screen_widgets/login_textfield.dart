@@ -8,12 +8,14 @@ class LoginTextField extends StatefulWidget {
       required this.textController,
       required this.obscureText,
       this.validator,
-      required this.keyboardType})
+      required this.keyboardType, required this.icon, required this.hintText})
       : super(key: key);
   final TextEditingController textController;
   final bool obscureText;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
+  final Icon icon;
+  final String hintText;
 
   @override
   State<LoginTextField> createState() => _LoginTextFieldState();
@@ -33,11 +35,15 @@ class _LoginTextFieldState extends State<LoginTextField> {
           keyboardType: widget.keyboardType,
           style: Themes.latoRegular(20),
           decoration: InputDecoration(
+            prefixIconColor: Colors.black,
+            hintText: widget.hintText,
+            prefixIcon: widget.icon,
             isDense: true,
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             filled: true,
             fillColor: Colors.white,
+            
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: const BorderSide(

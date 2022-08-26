@@ -27,18 +27,8 @@ class LoginColoredButon extends StatelessWidget {
         width: width,
         height: 58,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withOpacity(0.53)),
           color: color,
           borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            !google
-                ? BoxShadow(
-                    color: Colors.black.withOpacity(0.75),
-                    blurRadius: 4,
-                    offset: const Offset(0, 1.5),
-                  )
-                : const BoxShadow(),
-          ],
         ),
         child: Center(
           child: Row(
