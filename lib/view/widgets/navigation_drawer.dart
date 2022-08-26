@@ -72,6 +72,21 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               if (isLogged)
                 ListTile(
                   leading: const Icon(
+                    Icons.person_add
+                  ),
+                  title: Text(
+                    'Criar uma conta',
+                    style: Themes.latoLight(17),
+                  ),
+                  onTap: () {
+                    FirebaseAuth.instance
+                        .signOut()
+                        .then((value) => {Navigator.pushNamed(context, '/create-account-screen')});
+                  },
+              ),
+              if (isLogged)
+                ListTile(
+                  leading: const Icon(
                     Icons.logout,
                   ),
                   title: Text(

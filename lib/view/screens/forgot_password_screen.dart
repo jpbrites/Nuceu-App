@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/typicons_icons.dart';
 import 'package:nuceu/themes/themes.dart';
 import 'package:nuceu/view/widgets/Login_screen_widgets/login_textfield.dart';
 import 'package:nuceu/view/widgets/Login_screen_widgets/login_colored_button.dart';
@@ -61,12 +62,14 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
               textController: emailController,
               obscureText: false,
               validator: (email) {
-                if(email != null && !EmailValidator.validate(email)){
+                if (email != null && !EmailValidator.validate(email)) {
                   return 'Insira um email válido';
                 } else {
                   return null;
                 }
               },
+              hintText: 'Email', 
+              icon: const Icon(Typicons.at, size: 26,),
             ),
             const SizedBox(
               height: 28,

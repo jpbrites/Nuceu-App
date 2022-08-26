@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/typicons_icons.dart';
 import 'package:nuceu/themes/themes.dart';
 import 'package:nuceu/view/screens/forgot_password_screen.dart';
 import 'package:nuceu/view/screens/home_screen.dart';
@@ -36,18 +37,17 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Entrar',
-              style: Themes.latoRegular(48),
-            ),
-            const SizedBox(
-              height: 20,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('imagens/login.png', height: 250,),
+              ],
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: 20, left: 20),
               child: Text(
-                'Email',
-                style: Themes.latoRegular(20),
+                'Login',
+                style: Themes.latoRegular(24),
               ),
             ),
             LoginTextField(
@@ -61,16 +61,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   return null;
                 }
               },
+              hintText: 'Email', 
+              icon: const Icon(Typicons.at, size: 26,),
             ),
             const SizedBox(
               height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Text(
-                'Senha',
-                style: Themes.latoRegular(20),
-              ),
             ),
             LoginTextField(
               keyboardType: TextInputType.text,
@@ -78,7 +73,21 @@ class _LoginScreenState extends State<LoginScreen> {
               obscureText: true,
               validator: (_) {
                 return null;
+              }, 
+              hintText: 'Senha', 
+              icon: const Icon(Icons.lock_outline, size: 26,),
+            ),
+            const SizedBox(
+              height: 28,
+            ),
+            LoginColoredButon(
+              onTap: () {
+                signIn();
               },
+              color: const Color(0xFF109636),
+              label: 'Entrar',
+              textColor: Colors.white,
+              google: false,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 14),
@@ -95,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: Text(
                     'Esqueceu a Senha?',
-                    textAlign: TextAlign.end,
+                    textAlign: TextAlign.center,
                     style: Themes.latoRegular(14).copyWith(
                       shadows: const [
                         Shadow(color: Color(0xFF348BAA), offset: Offset(0, -4))
@@ -107,28 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 28,
-            ),
-            LoginColoredButon(
-              onTap: () {
-                signIn();
-              },
-              color: const Color(0xFF348BAA),
-              label: 'Entrar',
-              textColor: Colors.white,
-              google: false,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            LoginColoredButon(
-              onTap: () {},
-              color: Colors.white,
-              label: 'Entrar com o Google',
-              textColor: Colors.black,
-              google: true,
             ),
             const SizedBox(
               height: 30,
