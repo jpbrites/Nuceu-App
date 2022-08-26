@@ -88,6 +88,17 @@ class _CreateAccountState extends State<CreateAccount> {
         email: EmailController.text,
         password: '654321',
       );
+      FocusManager.instance.primaryFocus
+          ?.unfocus();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Conta criada, senha padrão: 654321',
+          style: Themes.latoRegular(20).copyWith(color: Colors.white),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color.fromARGB(255, 20, 180, 65),
+        duration: const Duration(seconds: 5),
+      ));
     } on FirebaseAuthException catch (e) {
       print(e);
       Navigator.pop(context); // tirar animação circular
