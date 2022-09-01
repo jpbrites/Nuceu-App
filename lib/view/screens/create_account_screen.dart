@@ -21,19 +21,21 @@ class _CreateAccountState extends State<CreateAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-        drawer: const NavigationDrawer(),
+      //resizeToAvoidBottomInset: false,
+      drawer: const NavigationDrawer(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.black, size: 30),
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          iconTheme: const IconThemeData(color: Colors.black, size: 30),
-            backgroundColor: Colors.white,
-            title: Text(
-              'Cadastrar',
-              style: Themes.latoRegular(24),),
-            ),
-        body: Padding(
+        title: Text(
+          'Cadastrar',
+          style: Themes.latoRegular(24),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,41 +43,49 @@ class _CreateAccountState extends State<CreateAccount> {
               SizedBox(
                 height: 70,
               ),
-               Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('imagens/register.png', height: 300,),
-              ],
-            ),
-            LoginTextField(
-              keyboardType: TextInputType.emailAddress,
-              textController: EmailController,
-              obscureText: false,
-              validator: (email) {
-                if (email != null && !EmailValidator.validate(email)) {
-                  return 'Insira um email válido';
-                } else {
-                  return null;
-                }
-              },
-              hintText: 'Email', 
-              icon: const Icon(Typicons.at, size: 26,),
-            ),
-            SizedBox(
-              height: 30,
-            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'imagens/register.png',
+                    height: 300,
+                  ),
+                ],
+              ),
+              LoginTextField(
+                keyboardType: TextInputType.emailAddress,
+                textController: EmailController,
+                obscureText: false,
+                validator: (email) {
+                  if (email != null && !EmailValidator.validate(email)) {
+                    return 'Insira um email válido';
+                  } else {
+                    return null;
+                  }
+                },
+                hintText: 'Email',
+                icon: const Icon(
+                  Typicons.at,
+                  size: 26,
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               LoginColoredButon(
-              onTap: () {
-                registerUser();
-              },
-              color: const Color(0xFF109636),
-              label: 'Criar conta',
-              textColor: Colors.white,
-              google: false,
-            ),
-          ],),
+                onTap: () {
+                  registerUser();
+                },
+                color: const Color(0xFF109636),
+                label: 'Criar conta',
+                textColor: Colors.white,
+                google: false,
+              ),
+            ],
+          ),
         ),
-        );
+      ),
+    );
   }
 
   Future registerUser() async {
@@ -84,12 +94,11 @@ class _CreateAccountState extends State<CreateAccount> {
         barrierDismissible: false,
         builder: (context) => const Center(child: CircularProgressIndicator()));
     try {
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: EmailController.text,
         password: '654321',
       );
-      FocusManager.instance.primaryFocus
-          ?.unfocus();
+      FocusManager.instance.primaryFocus?.unfocus();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
           'Conta criada, senha padrão: 654321',
@@ -113,6 +122,6 @@ class _CreateAccountState extends State<CreateAccount> {
         duration: const Duration(seconds: 5),
       ));
     }
-    Navigator.pop(context); 
+    Navigator.pop(context);
   }
 }

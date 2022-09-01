@@ -145,9 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   });
                                   Navigator.pop(context);
                                 },
-                                onEdit: () {
-                                  
-                                });
+                                onEdit: () {});
                           } else {
                             //Push pra página do evento
                           }

@@ -66,14 +66,12 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   ),
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.pushNamed(context, '/edit-post-screen');
+                    Navigator.pushNamed(context, '/create-event');
                   },
                 ),
               if (isLogged)
                 ListTile(
-                  leading: const Icon(
-                    Icons.person_add
-                  ),
+                  leading: const Icon(Icons.person_add),
                   title: Text(
                     'Criar uma conta',
                     style: Themes.latoLight(17),
@@ -81,7 +79,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   onTap: () {
                     Navigator.pushNamed(context, '/create-account-screen');
                   },
-              ),
+                ),
               if (isLogged)
                 ListTile(
                   leading: const Icon(

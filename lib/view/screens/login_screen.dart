@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomInset: false,
       drawer: const NavigationDrawer(),
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -31,91 +31,108 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text('Tela de Login', style: Themes.latoRegular(24),),
+        title: Text(
+          'Tela de Login',
+          style: Themes.latoRegular(24),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('imagens/login.png', height: 250,),
-              ],
-            ),
-            LoginTextField(
-              keyboardType: TextInputType.emailAddress,
-              textController: emailController,
-              obscureText: false,
-              validator: (email) {
-                if (email != null && !EmailValidator.validate(email)) {
-                  return 'Insira um email válido';
-                } else {
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'imagens/login.png',
+                    height: 250,
+                  ),
+                ],
+              ),
+              LoginTextField(
+                keyboardType: TextInputType.emailAddress,
+                textController: emailController,
+                obscureText: false,
+                validator: (email) {
+                  if (email != null && !EmailValidator.validate(email)) {
+                    return 'Insira um email válido';
+                  } else {
+                    return null;
+                  }
+                },
+                hintText: 'Email',
+                icon: const Icon(
+                  Typicons.at,
+                  size: 26,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              LoginTextField(
+                keyboardType: TextInputType.text,
+                textController: passwordController,
+                obscureText: true,
+                validator: (_) {
                   return null;
-                }
-              },
-              hintText: 'Email', 
-              icon: const Icon(Typicons.at, size: 26,),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            LoginTextField(
-              keyboardType: TextInputType.text,
-              textController: passwordController,
-              obscureText: true,
-              validator: (_) {
-                return null;
-              }, 
-              hintText: 'Senha', 
-              icon: const Icon(Icons.lock_outline, size: 26,),
-            ),
-            const SizedBox(
-              height: 28,
-            ),
-            LoginColoredButon(
-              onTap: () {
-                signIn();
-              },
-              color: const Color(0xFF109636),
-              label: 'Entrar',
-              textColor: Colors.white,
-              google: false,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 14),
-              child: SizedBox(
-                width: double.infinity,
-                child: GestureDetector(
-                  //Detectar toque no esqueceu a senha sem quebrar a formatação
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ForgotPassScreen(),
-                        ));
-                  },
-                  child: Text(
-                    'Esqueceu a Senha?',
-                    textAlign: TextAlign.center,
-                    style: Themes.latoRegular(14).copyWith(
-                      shadows: const [
-                        Shadow(color: Color(0xFF348BAA), offset: Offset(0, -4))
-                      ],
-                      decorationColor: const Color(0xFF348BAA),
-                      decoration: TextDecoration.underline,
-                      color: Colors.transparent,
+                },
+                hintText: 'Senha',
+                icon: const Icon(
+                  Icons.lock_outline,
+                  size: 26,
+                ),
+              ),
+              const SizedBox(
+                height: 28,
+              ),
+              LoginColoredButon(
+                onTap: () {
+                  signIn();
+                },
+                color: const Color(0xFF109636),
+                label: 'Entrar',
+                textColor: Colors.white,
+                google: false,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 14),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: GestureDetector(
+                    //Detectar toque no esqueceu a senha sem quebrar a formatação
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgotPassScreen(),
+                          ));
+                    },
+                    child: Text(
+                      'Esqueceu a Senha?',
+                      textAlign: TextAlign.center,
+                      style: Themes.latoRegular(14).copyWith(
+                        shadows: const [
+                          Shadow(
+                              color: Color(0xFF348BAA), offset: Offset(0, -4))
+                        ],
+                        decorationColor: const Color(0xFF348BAA),
+                        decoration: TextDecoration.underline,
+                        color: Colors.transparent,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-          ],
+              const SizedBox(
+                height: 30,
+              ),
+            ],
+          ),
         ),
       ),
     );
