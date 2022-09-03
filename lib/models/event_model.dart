@@ -3,12 +3,14 @@ class EventModel {
   String titulo;
   String textoInformativo;
   DateTime data;
+  String fotoUrl;
 
   EventModel({
     this.id = '',
     required this.titulo,
     required this.textoInformativo,
     required this.data,
+    this.fotoUrl = '',
   });
 
   Map<String, dynamic> toJson() => {
@@ -16,6 +18,7 @@ class EventModel {
         'titulo': titulo,
         'textoInformativo': textoInformativo,
         'data': data,
+        'fotoUrl': fotoUrl,
       };
 
   static EventModel parse(Map<String, dynamic> post) => EventModel(
@@ -23,5 +26,6 @@ class EventModel {
         titulo: post['titulo'],
         textoInformativo: post['textoInformativo'],
         data: post['data'].toDate(),
+        fotoUrl: post['fotoUrl'],
       );
 }

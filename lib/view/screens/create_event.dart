@@ -1,8 +1,14 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:nuceu/models/event_model.dart';
+import 'package:nuceu/services/firebase_api.dart';
 import 'package:nuceu/themes/themes.dart';
 import 'package:nuceu/view/widgets/colored_button.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart' as Path;
 
 import '../widgets/navigation_drawer.dart';
 
@@ -16,9 +22,15 @@ class CreateEvent extends StatefulWidget {
 class _CreateEventState extends State<CreateEvent> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+  UploadTask? task;
+  File? file;
+  bool haveImage = false;
+  String caminho = '';
 
   @override
   Widget build(BuildContext context) {
+    final fileName =
+        file != null ? Path.basename(file!.path) : 'Nenhum arquivo selecionado';
     return Scaffold(
       drawer: const NavigationDrawer(),
       backgroundColor: Colors.white,
@@ -104,15 +116,22 @@ class _CreateEventState extends State<CreateEvent> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ButtonTheme(
-                      minWidth: 225.0,
-                      height: 225.0,
-                      child: RaisedButton(
+                    GestureDetector(
+                      onTap: selectFile,
+                      child: Container(
+                        height: 225,
+                        width: 225,
                         color: Colors.grey[400],
-                        onPressed: () {},
-                        child: const Text(
-                          "+",
-                          style: TextStyle(fontSize: 40.0, color: Colors.white),
+                        child: Center(
+                          child: haveImage
+                              ? Image.network(
+                                  caminho,
+                                  fit: BoxFit.cover,
+                                )
+                              : const Text(
+                                  '+',
+                                  style: TextStyle(fontSize: 25),
+                                ),
                         ),
                       ),
                     ),
@@ -136,20 +155,44 @@ class _CreateEventState extends State<CreateEvent> {
                     text: 'Ok',
                     width: 84,
                     ontap: () async {
-                      DateTime? data = await showDatePicker(
+                      final day = await showDatePicker(
                         context: context,
                         locale: const Locale('pt', 'BR'),
                         initialDate: DateTime.now(),
                         firstDate: DateTime.now(),
                         lastDate: DateTime(2050),
                       );
-                      if (data != null) {
+                      final time = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.now(),
+                        cancelText: 'CANCELAR',
+                        hourLabelText: 'Hora',
+                        minuteLabelText: 'Minuto',
+                        helpText: 'ESCOLHA O HORÁRIO',
+                      );
+
+                      if (time != null && day != null) {
+                        final data = DateTime(day.year, day.month, day.day,
+                            time.hour, time.minute);
+
                         final event = EventModel(
                           titulo: titleController.text,
                           textoInformativo: descriptionController.text,
                           data: data,
+                          fotoUrl: caminho,
                         );
                         createEvent(event: event);
+                      } else {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                            'Data não inserida',
+                            style: Themes.latoRegular(20),
+                            textAlign: TextAlign.center,
+                          ),
+                          backgroundColor: Colors.pinkAccent,
+                          duration: const Duration(seconds: 2),
+                        ));
                       }
                     },
                   ),
@@ -175,5 +218,33 @@ class _CreateEventState extends State<CreateEvent> {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future selectFile() async {
+    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
+
+    if (result == null) return;
+    final path = result.files.single.path!;
+    setState(() => file = File(path));
+    uploadFile();
+  }
+
+  Future uploadFile() async {
+    if (file == null) return;
+
+    final fileName = Path.basename(file!.path);
+    final destination = 'files/$fileName';
+
+    task = FirebaseApi.uploadFile(destination, file!);
+    setState(() {});
+
+    if (task == null) return;
+
+    final snapshot = await task!.whenComplete(() {});
+    final urlDownload = await snapshot.ref.getDownloadURL();
+
+    caminho = urlDownload;
+    haveImage = true;
+    setState(() {});
   }
 }
