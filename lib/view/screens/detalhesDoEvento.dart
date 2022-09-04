@@ -1,11 +1,26 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:nuceu/utils/dialogs/interest_signal.dart';
 import 'package:nuceu/view/widgets/navigation_drawer.dart';
 import '../../utils/dialogs/addEventoPopup.dart';
 
 class EditPostScreen extends StatelessWidget {
-  const EditPostScreen({Key? key}) : super(key: key);
+  bool isLogged;
+  String id;
+  String photoUrl;
+  String date;
+  String title;
+  String description;
+
+  EditPostScreen({Key? key,  
+  this.id = '', 
+  this.photoUrl = '', 
+  this.date = '',
+  this.title = '',
+  this.description = '',
+  this.isLogged = false
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +34,7 @@ class EditPostScreen extends StatelessWidget {
           iconTheme: const IconThemeData(color: Colors.black, size: 30),
             backgroundColor: Colors.white,
             title: Text(
-              'Plantão Psicológico',
+              title,
               style: TextStyle(fontFamily: 'Lato-Light', color: Colors.black),
             )),
         body: SingleChildScrollView(
@@ -28,7 +43,11 @@ class EditPostScreen extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              ButtonTheme(
+              Image.network(photoUrl,
+                width: 248,
+                height: 224,
+              ),
+              /* ButtonTheme(
                 minWidth: 248.0,
                 height: 224.0,
                 child: RaisedButton(
@@ -39,12 +58,12 @@ class EditPostScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 40.0, color: Colors.white),
                   ),
                 ),
-              ),
+              ), */
               const SizedBox(
                 height: 30,
               ),
-              const Text(
-                'Campus Petrolina - 10 Julho',
+              Text(
+                date,
                 style: TextStyle(
                     fontFamily: 'Lato-Thin', fontSize: 24.0, color: Colors.black),
               ),
@@ -54,7 +73,7 @@ class EditPostScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 30.0, right: 30.0),
                 child: Text(
-                  'Campus Petrolina - 10 Julho do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  description,
                   style: TextStyle(
                       fontFamily: 'Lato-Regular',
                       fontSize: 12.0,
@@ -64,7 +83,7 @@ class EditPostScreen extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              AddNovoEvento(),
+              isLogged == true ? SizedBox(height: 0, width: 0,) : InterestSignal(id: id)
             ],
           ),
         ),

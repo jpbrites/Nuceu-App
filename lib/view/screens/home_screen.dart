@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:nuceu/utils/dialogs/admin_event_dialog.dart';
+import 'package:nuceu/view/screens/detalhesDoEvento.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/cardhome.dart';
 import 'package:nuceu/view/screens/quem_somos.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/pesquisa.dart';
@@ -135,6 +136,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context: context,
                                 onView: () {
                                   //mesma função que vai aparecer no else
+                                  Navigator.push(context, 
+                                  MaterialPageRoute(builder: ((context) => 
+                                  EditPostScreen(
+                                    id: document.id, isLogged: true, photoUrl: data['fotoUrl'].toString(),
+                                    date: eventDateFormated, title: data['titulo'].toString(), 
+                                    description: data['textoInformativo'].toString(),
+                                  ))));
                                 },
                                 onDelete: () {
                                   setState(() {
@@ -148,6 +156,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onEdit: () {});
                           } else {
                             //Push pra página do evento
+                            Navigator.push(context, 
+                            MaterialPageRoute(builder: ((context) => 
+                            EditPostScreen(
+                              id: document.id, isLogged: false, photoUrl: data['fotoUrl'].toString(),
+                              date: eventDateFormated, title: data['titulo'].toString(), 
+                              description: data['textoInformativo'].toString(),
+                            ))));
                           }
                         },
                         textoCard: data['titulo'].toString(),
@@ -187,8 +202,8 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             HomeBottomCard(
-              colorCard: Colors.amber,
-              colorIconCard: const Color.fromARGB(255, 145, 110, 7),
+              colorCard: Color.fromARGB(255, 215, 178, 130),
+              colorIconCard: Color.fromARGB(255, 170, 111, 52),
               title: 'Teste',
               icon: Icons.cable_sharp,
               ontap: () {},
