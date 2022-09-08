@@ -61,7 +61,13 @@ class _QuemSomosState extends State<QuemSomos> {
               padding:
                   EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
               child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                (
+                  "O Núcleo de Cuidado ao Estudante Universitário do Semiárido (NuCEU) foi instituído em 2019 na UNIVASF e tem sede no Centro de Estudos e Práticas em Psicologia (CEPPSI).\n"
+                  "É um projeto de extensão vinculado à PROEX/UNIVASF que oferta ações presenciais e remotas inter e multidisciplinares de cuidado à saúde mental de universitários, seus familiares, docentes e demais colaboradores de Instituições de Ensino Superior (IES), viabilizando, concomitantemente, desenvolvimento de competências em estudantes de Psicologia para atuação futura em contextos acadêmicos.\n"
+                  "Sensível ao fato de que as realidades do contexto das IES impõem a necessidade de uma equipe multidisciplinar de atenção psicossocial à saúde, o núcleo é composto por estudantes e profissionais de diversas áreas que visam prevenir e intervir com vistas à saúde e à qualidade de vida daqueles quem compõem a comunidade acadêmica.\n"
+                  "É um projeto de extensão vinculado à PROEX UNIVASF que já beneficiou muitas pessoas, através de atividades presenciais como atendimentos emergenciais, atendimentos individuais, grupos interventivos, integração de calouros, oficinas, palestras, plantão psicológico no CEPPSI e plantão psicológico itinerante, além de reuniões com gestores e professores, e rodas de conversa.\n"
+                  "Assim, esse aplicativo visa ajudar você com ações que visam beneficiar seu percurso acadêmico. Vem com a gente!"
+                ),
                 style: Themes.latoLight(20),
                 textAlign: TextAlign.justify,
               ),
@@ -85,7 +91,7 @@ class _QuemSomosState extends State<QuemSomos> {
                     icon: Icons.whatsapp,
                     ontap: () {
                       launchExternalWebsite(
-                          'https://wa.me/5587991592631?text=Falae+pc+lind%C3%A3o');
+                          'https://api.whatsapp.com/send?phone=5587991163148&text=Ol%C3%A1!%20Como%20posso%20conversar%20com%20algu%C3%A9m%20do%20NuCEU%3F');
                     },
                   ),
                   IconBottomCard(
@@ -196,7 +202,7 @@ class _QuemSomosState extends State<QuemSomos> {
                           color: const Color(0xFF92E3A9),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             FontAwesome5.map_marker_alt,
                             color: Color(0xFF263238),
@@ -259,7 +265,7 @@ class _QuemSomosState extends State<QuemSomos> {
   }
 
   void launchNuceuPhone() async {
-    var telUri = Uri(scheme: 'tel', path: "087991592631");
+    var telUri = Uri(scheme: 'tel', path: "087991163148");
     if (await canLaunchUrl(telUri)) {
       await launchUrl(telUri);
     } else {
