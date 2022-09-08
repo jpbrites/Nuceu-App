@@ -14,7 +14,7 @@
   </intent>
 </queries>
    <application
-        android:label="nuceu"
+        android:label="NuCEU"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
