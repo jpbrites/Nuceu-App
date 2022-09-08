@@ -13,7 +13,20 @@ import 'package:path/path.dart' as Path;
 import '../widgets/navigation_drawer.dart';
 
 class CreateEvent extends StatefulWidget {
-  const CreateEvent({Key? key}) : super(key: key);
+  final bool isEdit;
+  final String? documentId;
+  final String? documentTitle;
+  final String? documentDescription;
+  final dynamic documentPhoto;
+
+
+  const CreateEvent({Key? key, 
+    this.isEdit=false,
+    this.documentId = null,
+    this.documentTitle = null,
+    this.documentDescription = null,
+    this.documentPhoto = null
+    }) : super(key: key);
 
   @override
   State<CreateEvent> createState() => _CreateEventState();
@@ -29,6 +42,14 @@ class _CreateEventState extends State<CreateEvent> {
 
   @override
   Widget build(BuildContext context) {
+    if(widget.isEdit == true){
+      titleController.text = widget.documentTitle!;
+      descriptionController.text = widget.documentDescription!;
+      // sobre a imagem
+      haveImage = true;
+      caminho = widget.documentPhoto!;
+    }
+
     final fileName =
         file != null ? Path.basename(file!.path) : 'Nenhum arquivo selecionado';
     return Scaffold(
@@ -180,7 +201,7 @@ class _CreateEventState extends State<CreateEvent> {
                           data: data,
                           fotoUrl: caminho,
                         );
-                        createEvent(event: event);
+                        widget.isEdit == false ? createEvent(event: event) : editEvent(event: event);
                       } else {
                         FocusManager.instance.primaryFocus?.unfocus();
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -245,5 +266,18 @@ class _CreateEventState extends State<CreateEvent> {
     caminho = urlDownload;
     haveImage = true;
     setState(() {});
+  }
+
+  Future editEvent({required EventModel event}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('eventos')
+          .doc(widget.documentId)
+          .update(event.toJson());
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/home-screen', (route) => false);
+    } catch (e) {
+      print(e);
+    }
   }
 }

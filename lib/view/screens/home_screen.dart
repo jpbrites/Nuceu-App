@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:nuceu/utils/dialogs/admin_event_dialog.dart';
+import 'package:nuceu/view/screens/create_event.dart';
 import 'package:nuceu/view/screens/detalhesDoEvento.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/cardhome.dart';
 import 'package:nuceu/view/screens/quem_somos.dart';
@@ -170,7 +171,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                   });
                                   Navigator.pop(context);
                                 },
-                                onEdit: () {});
+                                onEdit: () {
+                                  Navigator.push(
+                                    context, 
+                                    MaterialPageRoute(builder: (context) => 
+                                      CreateEvent(isEdit: true, documentId: document.id,
+                                        documentTitle: data['titulo'].toString(),
+                                        documentDescription: data['textoInformativo'].toString(),
+                                        documentPhoto: data['fotoUrl'].toString(),
+                                      ),)
+                                    );
+                                });
                           } else {
                             //Push pra página do evento
                             Navigator.push(
