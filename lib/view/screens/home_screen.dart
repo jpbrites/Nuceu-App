@@ -10,6 +10,7 @@ import 'package:nuceu/view/widgets/home_screen_widgets/pesquisa.dart';
 import 'package:nuceu/themes/themes.dart';
 import 'package:nuceu/view/widgets/home_screen_widgets/home_bottom_card.dart';
 import 'package:intl/intl.dart';
+import 'package:nuceu/view/widgets/navigation_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -50,6 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      drawer: const NavigationDrawer(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: Colors.black, size: 30),
+          backgroundColor: Colors.white,
+          title: Text('Tela Inicial',
+              style: Themes.latoRegular(20).copyWith(color: Colors.black))),
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -57,8 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                  left: 30, right: 60, top: 20, bottom: 20),
+              padding: const EdgeInsets.only(left: 30, right: 60, bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -124,7 +133,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       Map<String, dynamic> data =
                           document.data()! as Map<String, dynamic>;
                       DateTime eventDate = data['data'].toDate();
-                      eventDate = eventDate.subtract(const Duration(hours: 3));
                       final String eventDateFormated =
                           DateFormat('kk:mm - dd-MM-yyyy').format(eventDate);
                       colorSelector();
@@ -136,13 +144,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                 context: context,
                                 onView: () {
                                   //mesma função que vai aparecer no else
-                                  Navigator.push(context, 
-                                  MaterialPageRoute(builder: ((context) => 
-                                  EditPostScreen(
-                                    id: document.id, isLogged: true, photoUrl: data['fotoUrl'].toString(),
-                                    date: eventDateFormated, title: data['titulo'].toString(), 
-                                    description: data['textoInformativo'].toString(),
-                                  ))));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) => EditPostScreen(
+                                                id: document.id,
+                                                isLogged: true,
+                                                photoUrl:
+                                                    data['fotoUrl'].toString(),
+                                                date: eventDateFormated,
+                                                title:
+                                                    data['titulo'].toString(),
+                                                description:
+                                                    data['textoInformativo'],
+                                                emailsCadastrados:
+                                                    data['emailsCadastrados'],
+                                              ))));
                                 },
                                 onDelete: () {
                                   setState(() {
@@ -156,13 +173,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onEdit: () {});
                           } else {
                             //Push pra página do evento
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: ((context) => 
-                            EditPostScreen(
-                              id: document.id, isLogged: false, photoUrl: data['fotoUrl'].toString(),
-                              date: eventDateFormated, title: data['titulo'].toString(), 
-                              description: data['textoInformativo'].toString(),
-                            ))));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => EditPostScreen(
+                                          id: document.id,
+                                          isLogged: false,
+                                          photoUrl: data['fotoUrl'].toString(),
+                                          date: eventDateFormated,
+                                          title: data['titulo'].toString(),
+                                          description: data['textoInformativo']
+                                              .toString(),
+                                          emailsCadastrados: [],
+                                        ))));
                           }
                         },
                         textoCard: data['titulo'].toString(),

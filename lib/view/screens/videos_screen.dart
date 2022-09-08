@@ -102,10 +102,8 @@ class _VideosScreenState extends State<VideosScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          'Se Liga!',
-          style: Themes.latoLight(20),
-        ),
+        title: Text('Se Liga!',
+            style: Themes.latoRegular(20).copyWith(color: Colors.black)),
       ),
       body: _channel != null
           ? NotificationListener<ScrollNotification>(

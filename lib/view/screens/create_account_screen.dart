@@ -29,10 +29,8 @@ class _CreateAccountState extends State<CreateAccount> {
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.black, size: 30),
         backgroundColor: Colors.white,
-        title: Text(
-          'Cadastrar',
-          style: Themes.latoRegular(24),
-        ),
+        title: Text('Cadastrar',
+            style: Themes.latoRegular(20).copyWith(color: Colors.black)),
       ),
       body: SingleChildScrollView(
         child: Padding(

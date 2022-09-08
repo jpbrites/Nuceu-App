@@ -39,10 +39,8 @@ class _CreateEventState extends State<CreateEvent> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          'Informações sobre o evento',
-          style: Themes.latoRegular(24),
-        ),
+        title: Text('Informações sobre o evento',
+            style: Themes.latoRegular(20).copyWith(color: Colors.black)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 35),
@@ -88,6 +86,7 @@ class _CreateEventState extends State<CreateEvent> {
                     //obscureText: true,
                     maxLines: null,
                     expands: true,
+                    controller: descriptionController,
                     textAlignVertical: TextAlignVertical.top,
                     decoration: InputDecoration(
                       alignLabelWithHint: true,

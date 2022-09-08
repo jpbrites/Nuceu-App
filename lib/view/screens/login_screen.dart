@@ -31,10 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          'Tela de Login',
-          style: Themes.latoRegular(24),
-        ),
+        title: Text('Tela de Login',
+            style: Themes.latoRegular(20).copyWith(color: Colors.black)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
