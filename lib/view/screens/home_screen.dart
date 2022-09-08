@@ -173,14 +173,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                                 onEdit: () {
                                   Navigator.push(
-                                    context, 
-                                    MaterialPageRoute(builder: (context) => 
-                                      CreateEvent(isEdit: true, documentId: document.id,
-                                        documentTitle: data['titulo'].toString(),
-                                        documentDescription: data['textoInformativo'].toString(),
-                                        documentPhoto: data['fotoUrl'].toString(),
-                                      ),)
-                                    );
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CreateEvent(
+                                          isEdit: true,
+                                          documentId: document.id,
+                                          documentTitle:
+                                              data['titulo'].toString(),
+                                          documentDescription:
+                                              data['textoInformativo']
+                                                  .toString(),
+                                          documentPhoto:
+                                              data['fotoUrl'].toString(),
+                                          documentData: eventDate,
+                                        ),
+                                      ));
                                 });
                           } else {
                             //Push pra página do evento

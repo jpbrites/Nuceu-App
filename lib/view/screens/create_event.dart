@@ -18,15 +18,17 @@ class CreateEvent extends StatefulWidget {
   final String? documentTitle;
   final String? documentDescription;
   final dynamic documentPhoto;
+  final DateTime? documentData;
 
-
-  const CreateEvent({Key? key, 
-    this.isEdit=false,
-    this.documentId = null,
-    this.documentTitle = null,
-    this.documentDescription = null,
-    this.documentPhoto = null
-    }) : super(key: key);
+  const CreateEvent(
+      {Key? key,
+      this.isEdit = false,
+      this.documentId = null,
+      this.documentTitle = null,
+      this.documentDescription = null,
+      this.documentPhoto = null,
+      this.documentData = null})
+      : super(key: key);
 
   @override
   State<CreateEvent> createState() => _CreateEventState();
@@ -39,15 +41,20 @@ class _CreateEventState extends State<CreateEvent> {
   File? file;
   bool haveImage = false;
   String caminho = '';
+  late DateTime data;
+  late TimeOfDay tempo;
 
   @override
   Widget build(BuildContext context) {
-    if(widget.isEdit == true){
+    if (widget.isEdit == true) {
       titleController.text = widget.documentTitle!;
       descriptionController.text = widget.documentDescription!;
       // sobre a imagem
       haveImage = true;
       caminho = widget.documentPhoto!;
+      data = widget.documentData!;
+      tempo = TimeOfDay(
+          hour: widget.documentData!.hour, minute: widget.documentData!.minute);
     }
 
     final fileName =
@@ -178,13 +185,13 @@ class _CreateEventState extends State<CreateEvent> {
                       final day = await showDatePicker(
                         context: context,
                         locale: const Locale('pt', 'BR'),
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
+                        initialDate: widget.isEdit ? data : DateTime.now(),
+                        firstDate: widget.isEdit ? data : DateTime.now(),
                         lastDate: DateTime(2050),
                       );
                       final time = await showTimePicker(
                         context: context,
-                        initialTime: TimeOfDay.now(),
+                        initialTime: widget.isEdit ? tempo : TimeOfDay.now(),
                         cancelText: 'CANCELAR',
                         hourLabelText: 'Hora',
                         minuteLabelText: 'Minuto',
@@ -201,7 +208,9 @@ class _CreateEventState extends State<CreateEvent> {
                           data: data,
                           fotoUrl: caminho,
                         );
-                        widget.isEdit == false ? createEvent(event: event) : editEvent(event: event);
+                        widget.isEdit == false
+                            ? createEvent(event: event)
+                            : editEvent(event: event);
                       } else {
                         FocusManager.instance.primaryFocus?.unfocus();
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
