@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
           centerTitle: true,
           iconTheme: const IconThemeData(color: Colors.black, size: 30),
           backgroundColor: Colors.white,
-          title: Text('Tela Inicial',
+          title: Text('NuCEU',
               style: Themes.latoRegular(20).copyWith(color: Colors.black))),
       body: GestureDetector(
         onTap: () {
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           document.data()! as Map<String, dynamic>;
                       DateTime eventDate = data['data'].toDate();
                       final String eventDateFormated =
-                          DateFormat('kk:mm - dd-MM-yyyy').format(eventDate);
+                          DateFormat('kk:mm  dd/MM/yyyy').format(eventDate);
                       colorSelector();
                       return CardHome(
                         id: document.id,
@@ -241,13 +241,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ontap: () {
                 Navigator.of(context).pushNamed('/videos-screen');
               },
-            ),
-            HomeBottomCard(
-              colorCard: Color.fromARGB(255, 215, 178, 130),
-              colorIconCard: Color.fromARGB(255, 170, 111, 52),
-              title: 'Teste',
-              icon: Icons.cable_sharp,
-              ontap: () {},
             ),
           ],
         ),

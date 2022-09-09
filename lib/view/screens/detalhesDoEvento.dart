@@ -41,66 +41,66 @@ class EditPostScreen extends StatelessWidget {
           title: Text(title,
               style: Themes.latoRegular(20).copyWith(color: Colors.black))),
       body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 30,
-            ),
-            if (photoUrl != '')
-              Image.network(
-                photoUrl,
-                width: 248,
-                height: 224,
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 30,
               ),
-            /* ButtonTheme(
-                minWidth: 248.0,
-                height: 224.0,
-                child: RaisedButton(
-                  color: Colors.grey[400],
-                  onPressed: () {},
-                  child: Text(
-                    "+",
-                    style: const TextStyle(fontSize: 40.0, color: Colors.white),
-                  ),
+              if (photoUrl != '')
+                Image.network(
+                  photoUrl,
+                  width: 248,
+                  height: 224,
                 ),
-              ), */
-            const SizedBox(
-              height: 30,
-            ),
-            Text(
-              date,
-              style: TextStyle(
-                  fontFamily: 'Lato-Thin', fontSize: 24.0, color: Colors.black),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 30.0, right: 30.0),
-              child: Text(
-                description,
-                style: TextStyle(
-                    fontFamily: 'Lato-Regular',
-                    fontSize: 12.0,
-                    color: Colors.black),
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            isLogged == true
-                ? ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
+              /* ButtonTheme(
+                  minWidth: 248.0,
+                  height: 224.0,
+                  child: RaisedButton(
+                    color: Colors.grey[400],
+                    onPressed: () {},
+                    child: Text(
+                      "+",
+                      style: const TextStyle(fontSize: 40.0, color: Colors.white),
                     ),
-                    onPressed: () {
-                      interestedDialog(
-                          context: context, emails: emailsCadastrados);
-                    },
-                    child: const Text('Ver interessados'),
-                  )
-                : InterestSignal(id: id)
-          ],
+                  ),
+                ), */
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                date,
+                style: TextStyle(
+                    fontFamily: 'Lato-Thin', fontSize: 24.0, color: Colors.black),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 30.0, right: 30.0),
+                child: Text(
+                  description,
+                  style: Themes.latoLight(18.0).copyWith(color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              isLogged == true
+                  ? ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                      ),
+                      onPressed: () {
+                        interestedDialog(
+                            context: context, emails: emailsCadastrados);
+                      },
+                      child: const Text('Ver interessados'),
+                    )
+                  : InterestSignal(id: id)
+            ],
+          ),
         ),
       ),
     );

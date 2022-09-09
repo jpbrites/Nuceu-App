@@ -119,7 +119,7 @@ class _CreateEventState extends State<CreateEvent> {
                     decoration: InputDecoration(
                       alignLabelWithHint: true,
                       border: const OutlineInputBorder(),
-                      labelText: 'Descrição',
+                      labelText: '(Procure colocar um \nmínimo de 20 palavras)',
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

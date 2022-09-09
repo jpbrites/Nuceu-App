@@ -53,7 +53,7 @@ editEventDialoig({
                           ),
                         ),
                         Text(
-                          'Vizualizar',
+                          'Visualizar',
                           style: Themes.latoRegular(20),
                         ),
                         ]
