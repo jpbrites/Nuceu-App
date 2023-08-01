@@ -24,7 +24,7 @@ class CardHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     IconData whatIcon;
-    if (thereAreEvents == true || thereAreEvents == null) {
+    if (thereAreEvents == true) {
       whatIcon = Icons.event_available_outlined;
     } else {
       whatIcon = Icons.do_not_disturb_on;

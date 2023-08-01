@@ -5,7 +5,6 @@ import 'package:nuceu/themes/themes.dart';
 import 'package:nuceu/utils/dialogs/interest_signal.dart';
 import 'package:nuceu/utils/dialogs/interested_dialog.dart';
 import 'package:nuceu/view/widgets/navigation_drawer.dart';
-import '../../utils/dialogs/addEventoPopup.dart';
 
 class EditPostScreen extends StatelessWidget {
   bool isLogged;

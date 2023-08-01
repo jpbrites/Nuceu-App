@@ -39,7 +39,7 @@ dependencies:
   http: ^0.13.5
   youtube_player_flutter: ^8.1.0
   url_launcher: ^6.1.5
-  intl: ^0.17.0
+  intl: ^0.18.0
   file_picker: ^5.0.1
   firebase_storage: ^10.3.7
 
